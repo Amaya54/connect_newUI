@@ -8,7 +8,7 @@ class users(models.Model):
     location = models.CharField(max_length=500)
     gender = models.CharField(max_length=1)
     email = models.CharField(max_length=200,primary_key=True)
-    contactNo = models.CharField(max_length=200)
+    contactNo = models.CharField(max_length=200,unique=True)
     doj = models.DateTimeField(auto_now_add=True)
     flags = models.CharField(max_length=3)
     password = models.CharField(max_length=200)

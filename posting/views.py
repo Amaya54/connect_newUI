@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect, requires_csr
 from django.http import HttpResponse
 from dbUtils import *
 import json
+from django.core import serializers
 @csrf_exempt
 def post(request):
 	userId = request.POST['userId']
@@ -17,5 +18,10 @@ def post(request):
 def fetchPost(request):
 	userId = request.POST['userId']
 	filters = request.POST['filters']
-	user, responseCode, responseString = getPost(userId,filters)
-	return HttpResponse(json.dumps(user), content_type="application/json")
+	user, responseCode, responseString = getPost(userId,filters)  
+	user = serializers.serialize("json", user)                                
+	data = json.loads(user)
+	for each in data:
+		each.pop('model')
+		each.pop('pk')
+	return HttpResponse(json.dumps(data), content_type="application/json")

@@ -29,15 +29,12 @@ from django.core import serializers
 def getPost(userId,filters):
 	user = ''
 	try:
-		if 'ALL' in filters:
-			user = postDetails.objects.order_by('dop')[:50]
-		elif 'ME' in filters:
-			user = postDetails.objects.get(userId = userId)
+		if filters == 'ALL':
+			user = postDetails.objects.order_by('-dop')[:50]
+		elif filters == 'ME':
+			user = postDetails.objects.all().filter(userId = userId).order_by('-dop')[:50]
 		else:
 			print filters
-		user = serializers.serialize("json", user)
-		lis = []
-		print user
 
 	except postDetails.DoesNotExist, e:
 		print "Exception "+str(e)
