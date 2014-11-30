@@ -11,5 +11,5 @@ urlpatterns = patterns('',
     url(r'^login/', 'login.views.login', name='login'),
     url(r'^fetchPost/', 'posting.views.fetchPost', name='fetchPost'),
     url(r'^post/', 'posting.views.post', name='post'),        
-    
+    url(r'^connect/', 'connecting.views.connect', name='connect'),    
 )

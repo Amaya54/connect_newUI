@@ -1,5 +1,4 @@
 from models import *
-from login.models import login
 from django.db import IntegrityError, DatabaseError
 from django.core.exceptions import ValidationError
 import uuid

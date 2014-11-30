@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'register',
     'login',
     'posting',
+    'connecting',
 )
 
 MIDDLEWARE_CLASSES = (
