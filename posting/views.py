@@ -20,8 +20,7 @@ def fetchPost(request):
 	userId = request.POST['userId']
 	filters = request.POST['filters']
 	user, responseCode, responseString = getPost(userId,filters)  
-	user = serializers.serialize("json", user)
-	print user                                
+	user = serializers.serialize("json", user)                               
 	data = json.loads(user)
 	for each in data:
 		each.pop('model')

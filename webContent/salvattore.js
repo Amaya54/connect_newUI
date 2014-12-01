@@ -513,3 +513,52 @@ return {
 
     return salvattore;
 }));
+
+    function append(title, content, connectCount, postId){
+      var grid = document.querySelector('#columns');
+      var item = document.createElement('div');
+     var h = '<div id="" style="opacity:1; background-color: rgba(10,10,10,0.3); color: rgb(250,253,255); box-shadow:0 0 5px white;" class="panel panel-primar panel-transparen  ">';
+          h += '<div style="opacit:1; background-color: rgba(12,12,12,0.6); color: white;" class="panel-heading">';
+
+          h += title;
+          h += '</div>';
+          h += '<div class="panel-body">';
+          h += content;
+          h += '<hr>';
+          h += '<p  ><span onClick="connect(this.id);" id="'+postId+'" class="glyphicon glyphicon-link" style="cursor:pointer;" style="font-siz:15px;" > Connect &nbsp;</span>';
+
+          h += '<span class="glyphicon glyphicon-user" style="font-siz:15px;" > <span id="">'+connectCount+'<span></span></p>';
+          h += '</div>';
+          h += '</div>';
+         salvattore['append_elements'](grid, [item])
+      item.outerHTML = h;
+    }
+
+    // $.getJSON("https://www.googleapis.com/books/v1/volumes?q=inauthor:Ernest+Hemingway&callback=?", function(data){
+    //   $(data.items).each(function(i,book){
+    //       append(i +'. '+ book.volumeInfo.title, book.volumeInfo.description);
+    //   });
+    // });
+
+  function getPost(filter){
+
+    var userId = localStorage.userId;
+    if(userId == null)
+    {
+
+      userId=1;
+    }
+    var filterBy = filter;
+     
+    var url = urlStart + "fetchPost/";
+    
+    var posting = $.post(url, {userId : userId, filters : filterBy,  responseType : 'json'});
+
+      posting.done(function(data){
+         
+        for(var i=0;i<data.length;i++){
+       append(data[i].fields.title,data[i].fields.content,data[i].fields.connectCount,data[i].fields.postId);   
+    }
+    });
+    return false
+  }

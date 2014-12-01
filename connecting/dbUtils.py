@@ -14,7 +14,10 @@ def exchange(userId,postId):
 		post.save()
 		user = users.objects.get(userId = userId)
 		flag2 = user.flags[1:]
-		flag = flag2 + flag1 		
+		print flag1
+		print flag2
+		flag = flag2 +""+ flag1
+		print flag1+" "+flag2	 	
 	except ValidationError, e:
 		print "Exception "+str(e)
 		RESPONSE_CODE = "RESPONSE_CODE_VALIDATION_ERROR"

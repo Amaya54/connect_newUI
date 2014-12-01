@@ -28,12 +28,13 @@ from django.core import serializers
 def getPost(userId,filters):
 	user = ''
 	try:
+
 		if filters == 'ALL':
 			user = postDetails.objects.order_by('-dop')[:50]
 		elif filters == 'ME':
 			user = postDetails.objects.all().filter(userId = userId).order_by('-dop')[:50]
 		else:
-			filters = eval(filters)
+			filters = eval(filters);
 			k = "%"+filters['search']+"%"
 			user = postDetails.objects.extra(where=["tags like %s OR content like %s OR title like %s"], params =[k,k,k]).order_by('-dop') [:50]
 

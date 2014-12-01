@@ -10,7 +10,13 @@
 <script type="text/javascript" src="files/js/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style type="text/css">
-		@media screen and (min-width: 1px) and (max-width: 767px){
+		@media screen and (min-width: 1px) and (max-width: 480px){
+		  #columns[data-columns]::before {
+		    content: '1 .col-xs-12';
+		  }
+		}
+
+        @media screen and (min-width: 481px) and (max-width: 767px){
 		  #columns[data-columns]::before {
 		    content: '2 .col-xs-6';
 		  }
@@ -30,6 +36,13 @@
 
 $(document).ready(function() {
 	$("#settings").hide();
+	$("#postIcon").hide();
+    getPost("ALL");
+	if(localStorage.userId!=null) {
+
+		logMeIn();
+	}
+
 });
 
 if(!window.localStorage) {
@@ -37,6 +50,8 @@ if(!window.localStorage) {
 	$('body').html('');
 	window.close();
 }
+
+
 
 var urlStart = "http://127.0.0.1:8000/"
 	function sub(){
@@ -81,9 +96,17 @@ var urlStart = "http://127.0.0.1:8000/"
 		$("#login").hide();
 		$("#register").hide();
 		$("#settings").show();
-		$("#userData").innerHTML("Howdy  " + localStorage.name + " !")
+		$("#postIcon").show();
+		var n = localStorage.name;
+		n = n.split(" ")[0];
+		$("#loggedUser").html("Howdy    " + n + " !")
+
 
 	}	
+
+	function logMeOut(){
+		localStorage.clear();
+	}
 
 	function login(){
 		var username = $('#username').val();
@@ -102,6 +125,7 @@ var urlStart = "http://127.0.0.1:8000/"
 				localStorage.flags = data.flags;
 				localStorage.location = data.location;
 				localStorage.email = data.email;
+				location.reload();
 				logMeIn();	
 			}
 			else
@@ -111,7 +135,74 @@ var urlStart = "http://127.0.0.1:8000/"
 		});
 
 		return false
-		}	
+	}
+
+
+
+
+	function post(){
+		var postTitle = $('#postTitle').val();
+		var postContent = $('#postContent').val();
+		var postTags = $('#postTags').val();
+		var url = urlStart + "post/";
+		var flag = localStorage.flags.substring(1);
+		var userId = localStorage.userId;
+		var filterBy = "{'flag':'"+flag+"'}";
+		var posting = $.post(url, {userId : userId, title : postTitle, content : postContent, tags : postTags,filterBy : filterBy,  responseType : 'json'});
+		posting.done(function(data){ 
+			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
+			{
+				alert('You have sucessfully Posted your post');
+			}
+			else
+			{
+				alert(data.responseCode);
+			}
+			location.reload();
+		});
+		return false
+	}
+
+
+
+	function connect(id) {
+
+		var postId = id;
+		var userId = localStorage.userId;
+		var url = urlStart + "connect/";
+		var posting = $.post(url, {userId : userId, postId : postId, responseType : 'json'});
+		posting.done(function(data){ 
+			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
+			{
+				alert(data.responseString);
+			}
+			else
+			{
+				alert(data.responseCode);
+			}
+			location.reload();
+		});
+		return false
+	}
+
+	function searchPost() {
+
+		var searchId = $('#searchBox').val();
+		var filter = "{'search':'"+searchId+"'}";
+		getPost(filter);
+
+	}
+
+	function check(val){
+
+		var oldPass = document.getElementById('regPassword').value;
+		var newPass = val.value;
+		if (newPass == oldPass)
+			{
+				document.getElementById('checker').className="glyphicon glyphicon-ok form-control-feedback";
+
+			}
+	}
 </script>
 </head>
 <body class="full">
@@ -141,7 +232,7 @@ var urlStart = "http://127.0.0.1:8000/"
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" style="color:white;" id="userData" href="#">Howdy, guest </a>
+                <a class="navbar-brand btn" style="color:white;" id="userData" href="#"><span class="glyphicon glyphicon-transfer" style="margin:4px 12px 0 10px;">CONNECT</span> </a>
 
             </div>
             
@@ -149,17 +240,17 @@ var urlStart = "http://127.0.0.1:8000/"
             	<form class="navbar-form navbar-left" role="search">
 
 			        <div class="form-group">
-			          <input type="text" style="margin-left:5em; width:500px;" class="form-control" placeholder="Search">
+			          <input type="text" id="searchBox" style="margin-left:5em; width:500px;" class="form-control" placeholder="Search">
 			        </div>
 
 					
-			        <span type="submit" class="btn btn-default glyphicon glyphicon-search" style="font-siz:15px; margin:5px;" aria-hidden="true"></span>
+			        <span type="button" onClick="searchPost()" class="btn btn-default glyphicon glyphicon-search" style="font-siz:15px; margin:5px;" aria-hidden="true"></span>
 			      </form>
-			      <ul class="nav navbar-nav navbar-right">
+			      <ul class="nav navbar-nav navbar-right" style="margin-top:5px;">
 			        
-			        	<li><a href="#" data-toggle="modal" >Home <span class="glyphicon glyphicon-home" style="font-siz:15px;" aria-hidden="true"></span></a></li>
+			        	<li><a href="#" id="loggedUser" data-toggle="modal" class="btn" style="color:white;">Home <span class="glyphicon glyphicon-home" style="font-siz:15px;" ></span></a></li>
 
-						<li><a href="#" data-toggle="modal" class="btn btn-succes btn-mini" style="color:white; borde:1px solid white; backgroun:#77BE56;" role="button" >Post <span class="glyphicon glyphicon-plus" style="font-size:15px;" aria-hidden="true"></span></a></li>
+						<li><a href="#postingModal" data-toggle="modal" class="btn btn-succes btn-mini" style="color:white; borde:1px solid white; backgroun:#77BE56;" role="button"id="postIcon" >Post <span class="glyphicon glyphicon-plus" style="font-size:15px;" aria-hidden="true"></span></a></li>
 				        <li><a href="#login" data-toggle="modal" id="loggedLogin" class="btn btn-primar btn-mini" style="color:white; borde:1px solid white; " role="button" data-toggle="modal" data-qts="LoginButton">Login</a></li>
 				        <li><a href="#register" data-toggle="modal" id="loggedSignUp" class="btn btn-succes btn-mini" style="color:white; borde:1px solid white; backgroun:#77BE56;" role="button"  data-qts="LoginButton">Sign Up</a></li>
 				    
@@ -167,7 +258,7 @@ var urlStart = "http://127.0.0.1:8000/"
 				         <a href="#" class="dropdown-toggle" style="color:white;" data-toggle="dropdown" role="button" aria-expanded="false">Settings &nbsp;<span class="glyphicon glyphicon-cog" styl="font-size:15px;" aria-hidden="true"></span></a>
 				         	<ul class="dropdown-menu" role="menu">
 
-					            <li><a href="#">Log out</a></li>
+					            <li><a href="" onclick="logMeOut()">Log out</a></li>
 					            
 					            <li class="divider"></li>
 					            <li><a href="#">Help</a></li>
@@ -264,10 +355,57 @@ var urlStart = "http://127.0.0.1:8000/"
         </div>
     </div>
 </div>
-\
 
 
 
+
+
+
+<!-- POSTING MODAL HERE  -->
+
+<div id="postingModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div> -->
+            <div class="modal-body">
+
+            	<form onsubmit="return false" role="form">
+            		
+            		<div class="form-group">
+            			
+            			<label for="title">Title :</label>
+            			<input name="postTitle" placeholder="Title goes here " type="text-box" class="form-control" id="postTitle">
+            			<hr>
+            			<label for="content">Content :</label>
+            			<textarea name="postContent"  placeholder="Your post goes here " rows="10" cols="30" class="form-control" id="postContent"></textarea>
+            			<hr>
+            			<label for="tags">Tags :</label>
+            			<input name="postTags" type="text-box" placeholder="Finance, Education, Corporate, LifeStyle" class="form-control" id="postTags" >
+            <!-- 			<input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />  -->
+            		</div><!-- 
+            		<div class="form-group">
+            			
+            			<label for="Password">Password :</label>
+            			<input name="password" type="password" class="form-control" id="pwd">
+            		</div> -->
+<!--             		<div class="checkbox">
+            			<label><input type="checkbox">Remember me</label>
+            		</div>
+            		
+            	
+                <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+ -->            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" onclick="post()" class="btn btn-primary">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -331,10 +469,11 @@ var urlStart = "http://127.0.0.1:8000/"
 		        			<input type="password" class="form-control" name="password" id="regPassword">
 		        		</div>
 
-		        		<div class="form-group">
+		        		<div class="form-group has-feedback">
 		        			
 		        			<label for="Confirm Password">Confirm Password :</label>
-		        			<input type="password" onkeypress="chckPassowrd(this.value);" class="form-control" id="regConfirmPassword">
+		        			<input onkeyup="check(this)" type="password" onkeypress="chckPassowrd(this.value);" class="form-control" id="regConfirmPassword">
+		        			<i id="checker" class=" glyphicon glyphicon-remove form-control-feedback"></i>
 		        		</div>
 		        		<div class="checkbox">
 		        		
@@ -411,17 +550,16 @@ var urlStart = "http://127.0.0.1:8000/"
 
 
 
+		<div class="container" style="position:relative; margin-top:100px;">
 
-<div class="container">
-		
-		  <h1 class="col-xs-12"></h1>
+		  
 		  <div id="columns" data-columns>
+		  	
 		  	<div></div>
 		  	<div></div>
-		  	<div></div>
+
 		  </div>
-</div>
-		
+		</div>		
 
 
 
@@ -477,35 +615,6 @@ var urlStart = "http://127.0.0.1:8000/"
 
 
 <script>
-
-		function append(title, content){
-		  // var grid = document.querySelector('#columns');
-		  // var item = document.createElement('div');
-		  var h = '<div style="opacity:1; background-color: rgba(10,10,10,0.3); color: rgb(250,253,255); box-shadow:0 0 5px white;" class="panel panel-primar panel-transparen  ">';
-		      h += '<div style="opacit:1; background-color: rgba(12,12,12,0.6); color: white;" class="panel-heading">';
-		      h += title;
-		      h += '</div>';
-		      h += '<div class="panel-body">';
-		      h += content;
-		      h += '</div>';
-		      h += '</div>';
-		      
-		      for(var i=0;i<39;i++){
-		      $('#columns').append(h);}
-		  // salvattore['append_elements'](grid, [item])	item.outerHTML = h; 
-		}
-
-
-
-		append('Jobs @ IIIT','the following are the requirements : B.Tech degree CSE, at least pass out from M.Tech contact no :9938004110');
-
-		// $.getJSON("https://www.googleapis.com/books/v1/volumes?q=inauthor:Ernest+Hemingway&callback=?", function(data){
-		
-		//   $(data.items).each(function(i,book){
-
-		//       append(book.volumeInfo.title, book.volumeInfo.description);
-		//   });
-		// });
 		</script>
 
 <script type="text/javascript" src="files/js/main.js"></script>
