@@ -9,4 +9,5 @@ def connect(request):
 	userId = request.POST['userId']
 	postId = request.POST['postId']
 	responseCode, responseString = getConnected(userId,postId)
-	return HttpResponse(responseCode)
+	response = {'responseCode':responseCode, 'responseString':responseString}
+	return HttpResponse(json.dumps(response), content_type="application/json")

@@ -10,6 +10,8 @@ def exchange(userId,postId):
 	try:
 		post = postDetails.objects.get(postId = postId)
 		flag1 = eval(post.filterBy)['flag']
+		post.connectCount = post.connectCount + 1
+		post.save()
 		user = users.objects.get(userId = userId)
 		flag2 = user.flags[1:]
 		flag = flag2 + flag1 		
@@ -30,21 +32,36 @@ def exchange(userId,postId):
 	return RESPONSE_CODE
 	
 def exchangeInfo(exchangeFlag):
-	if exchangeFlag == '1111':
-		print 'Exchange all info among all'
-	elif exchangeFlag == '1110':
-		print 'Connecter all Poster only mobile'
-	elif exchangeFlag == '1101':
-		print 'Connecter all Poster only email'
-	elif exchangeFlag == '1011':
-		print 'Connector only mobile Poster all'
+	if exchangeFlag == '0001':
+		return 'Send Poster Mailid to Connector'
+	elif exchangeFlag == '0010':
+		return 'Send Poster contactNo to Connector'
+	elif exchangeFlag == '0011':
+		return 'Send Poster Mail,contactNo to Connector'
+	elif exchangeFlag == '0100':
+		return 'Send Connector Mailid to Poster'
+	elif exchangeFlag == '0101':
+		return 'Send Connector Mailid to Poster and Send Poster Mailid to Connector'
+	elif exchangeFlag == '0110':
+		return 'Send Connector Mailid to Poster and Send Poster contactNo to Connector'
 	elif exchangeFlag == '0111':
-		print 'Connecter only mail Poster all'
-	elif exchangeFlag == '1100':
-		print 'Exchange all info among all'
+		return 'Send Connector Mailid to Poster and Send Poster Mailid,contactNo to Connector'
+	elif exchangeFlag == '1000':
+		return 'Send Connector contactNo to Poster'
 	elif exchangeFlag == '1001':
-		print 'Exchange all info among all'
-
+		return 'Send Connector contactNo to Poster and Send Poster Mailid to Connector'
+	elif exchangeFlag == '1010':
+		return 'Send Connector contactNo to Poster and Send Poster contactNo to Connector'
+	elif exchangeFlag == '1011':
+		return 'Send Connector contactNo to Poster and Send Poster contactNo,Mailid to Connector'
+	elif exchangeFlag == '1100':
+		return 'Send Connector contactNo,Mailid to Poster'
+	elif exchangeFlag == '1101':
+		return 'Send Connector contactNo,Mailid to Poster and Send Poster Mailid to Connector'
+	elif exchangeFlag == '1110':
+		return 'Send Connector contactNo,Mailid to Poster and Send Poster contactNo to Connector'
+	elif exchangeFlag == '1111':
+		return 'Send Connector contactNo,Mailid to Poster and Send Poster contactNo,Mailid to Connector'
 
 
 
@@ -53,7 +70,7 @@ def getConnected(userId,postId):
 		exchangeFlag = exchange(userId,postId)
 		user = connectDetails(connectId = uuid.uuid4(), userId = userId, postId = postId, exchangeFlag = exchangeFlag)
 		user.save()
-		exchangeInfo(exchangeFlag)
+		data = exchangeInfo(exchangeFlag)
 	except ValidationError, e:
 		print "Exception "+str(e)
 		RESPONSE_CODE = "RESPONSE_CODE_VALIDATION_ERROR"
@@ -68,5 +85,5 @@ def getConnected(userId,postId):
 		RESPONSE_CODE = "RESPONSE_CODE_GENERIC_ERROR"
 	else :
 		RESPONSE_CODE = "RESPONSE_CODE_SUCCESS"
-	return RESPONSE_CODE , "USER SAVED"
+	return RESPONSE_CODE , data
 

@@ -12,16 +12,19 @@ def post(request):
 	filterBy = request.POST['filterBy']
 	tags = request.POST['tags']	
 	responseCode, responseString = createPost(userId,title,content,filterBy,tags)
-	return HttpResponse(responseCode)
+	response = {'responseCode':responseCode}
+	return HttpResponse(json.dumps(response), content_type="application/json")
 
 @csrf_exempt
 def fetchPost(request):
 	userId = request.POST['userId']
 	filters = request.POST['filters']
 	user, responseCode, responseString = getPost(userId,filters)  
-	user = serializers.serialize("json", user)                                
+	user = serializers.serialize("json", user)
+	print user                                
 	data = json.loads(user)
 	for each in data:
 		each.pop('model')
+		each['fields']['postId'] = each['pk']
 		each.pop('pk')
 	return HttpResponse(json.dumps(data), content_type="application/json")

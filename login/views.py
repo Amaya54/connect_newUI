@@ -11,7 +11,10 @@ def login(request):
 	if user != '':
 		user.__dict__.pop('doj')
 		user.__dict__.pop('_state')
+		user.__dict__.pop('password')
+		user.__dict__['responseCode'] = responseCode
 		return HttpResponse(json.dumps(user.__dict__), content_type="application/json")
 	else:
-		return HttpResponse(responseCode)
+		response = {'responseCode':responseCode}
+		return HttpResponse(json.dumps(response), content_type="application/json")
 
