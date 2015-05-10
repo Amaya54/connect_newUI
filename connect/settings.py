@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'login',
     'posting',
     'connecting',
+    'tagHandler',
+    'accountSetting',
 )
 
 MIDDLEWARE_CLASSES = (

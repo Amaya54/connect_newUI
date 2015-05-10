@@ -13,6 +13,9 @@ def register(request):
 	contactNo = request.POST['contactNo']
 	flags = request.POST['flags']
 	password = request.POST['password']	
-	responseCode, responseString = createUser(name,password,dob,location,gender,email,contactNo,flags)
+	fbUserName = request.POST['fbUserName']
+	#tags = request.POST['tags']
+	#fbUserName = "guest"
+	responseCode, responseString = createUser(name,password,dob,location,gender,email,contactNo,flags,fbUserName)
 	response = {'responseCode':responseCode}
 	return HttpResponse(json.dumps(response), content_type="application/json")

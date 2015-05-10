@@ -1,6 +1,1605 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
-HI
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="files/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="files/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="files/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="files/css/jquery.dropdown.css">
+
+<!-- Material design files -->
+
+<link rel="stylesheet" type="text/css" href="files/css/material.css">
+<link rel="stylesheet" type="text/css" href="files/css/material-fullpalette.css">
+<link rel="stylesheet" type="text/css" href="files/css/material.min.css">
+<link rel="stylesheet" type="text/css" href="files/css/roboto.min.css">
+<link rel="stylesheet" type="text/css" href="files/css/ripples.min.css">
+
+
+<!-- <link rel="stylesheet" type="text/css" href="files/css/main.css"> -->
+<script src="files/js/jquery-2.1.3.js"></script>
+<!-- <script src="files/js/main.js"></script> -->
+ 
+
+
+
+
+
+
+
+ <style>
+
+
+/* Inner Glyphicon styling */
+/*
+.inner-addon {
+	position: relative;
+}
+
+.inner-addon .glyphicon {
+	position: absolute;
+	padding: 10px;
+	pointer-events:none;
+}
+
+.right-addon .glyphicon {
+	right: 10px;
+}
+
+.right-addon input {
+	padding-right: 50px;
+}
+*/
+
+.glyphicon-user:hover {
+	background: white;
+}
+
+.glyphicon-user {
+	background: #009688;
+}
+
+
+.container-3 {
+	width: 70%;
+	vertical-align: middl;
+	white-space: nowrap;
+	margin: 0 auto;
+	margin-top: 0%;
+}
+
+.container-3 input.search {
+	width: 100%;
+	padding: 10px;
+	height: 100%;
+	background: #455a64;
+	border: none;
+	font-size: 1.1em;
+	float: right;
+	color: #63717f;
+	padding-left: 45px;
+}
+
+.container-3 input.search::-webkit-input-placeholder {
+   color: #b0bec5;
+}
+ 
+.container-3 input.search:-moz-placeholder { /* Firefox 18- */
+   color: #b0bec5;  
+}
+ 
+.container-3 input.search::-moz-placeholder {  /* Firefox 19+ */
+   color: #b0bec5;  
+}
+ 
+.container-3 input.search:-ms-input-placeholder {  
+   color: #b0bec5;  
+}
+
+.container-3 .icon{
+  position: absolute;
+  top: 30%;
+  margin-left: 17px;
+  margin-top: px;
+  z-index: 1;
+  color: #b0bec5;
+}
+
+.container-3 input.search:hover, .container-3 input.search:focus, .container-3 input.search:active{
+    outline:none;
+    background: #fff;
+  }
+
+
+
+.rp:hover {
+	cursor: pointer;
+}
+
+
+
+
+/* Search bar styling goes here */
+
+.container-1 {
+	width: 100%;
+	vertical-align: middle;
+	white-space: nowrap;
+	margin: 0 auto;
+	margin-top: 10%;
+}
+
+.container-1 input.search {
+	width: 100%;
+	padding: 10px;
+	height: 100%;
+	background: #455a64;
+	border: none;
+	font-size: 1.1em;
+	float: right;
+	color: #63717f;
+	padding-left: 45px;
+}
+
+.container-1 input.search::-webkit-input-placeholder {
+   color: #b0bec5;
+}
+ 
+.container-1 input.search:-moz-placeholder { /* Firefox 18- */
+   color: #b0bec5;  
+}
+ 
+.container-1 input.search::-moz-placeholder {  /* Firefox 19+ */
+   color: #b0bec5;  
+}
+ 
+.container-1 input.search:-ms-input-placeholder {  
+   color: #b0bec5;  
+}
+
+.container-1 .icon{
+  position: absolute;
+  top: 30%;
+  margin-left: 17px;
+  margin-top: px;
+  z-index: 1;
+  color: #b0bec5;
+}
+
+.container-1 input.search:hover, .container-1 input.search:focus, .container-1 input.search:active{
+    outline:none;
+    background: #fff;
+  }
+
+
+/* Search bar stylings ends here */
+
+
+
+
+
+
+/* Custom Filter Search bar styling goes here */
+
+
+.container-2 {
+	width: 100%;
+	vertical-align: middle;
+	white-space: nowrap;
+	margin: 0;
+	margin-top: 10%;
+	margin-bottom: 5%;
+}
+
+.container-2 input#search {
+	width: 100%;
+	padding: 10px;
+	height: 10%;
+	background: #455a64;
+	border-right: 1px solid black;
+	font-size: 1.1em;
+	float: right;
+	color: #63717f;
+	padding-left: 45px;
+}
+
+
+.glyphicon-plus {
+	padding: px;
+
+}
+
+.dynamicAdd {
+	background: #90a4ae!important;
+	border: none;
+	width: 45px;
+	border-radius: 1px!important;
+}
+
+/* Custom Filter search bar styling ends here */
+
+
+
+
+
+/* Filter button styling goes here */
+
+div > .row > button {
+
+	margin: 2px 2px 5px 0px;
+}
+
+
+.btn-rounded {
+	border-radius: 24px;
+	border: 1px solid #78909c;
+	background: #78909c;
+	outline: none;
+	color: #212121;
+}
+
+
+.dynamicFilter {
+	font-size: 0.9em;
+	background: #263238!important;
+	border: 2px solid #212121;
+	color: #fff;
+
+}
+
+
+/* Filter button styling ends here */
+
+
+
+
+
+
+/* Right panel menu styling goes here */
+
+ul > li {
+	padding-top: px;
+	margin-top: em;
+	borde: 1px solid black;
+
+}
+
+
+ul  > li > a > span {
+	padding: 10px;
+}
+
+
+ul > li {
+	margin-bottom: 0px;
+}
+
+
+ul > li > a, ul > li > a > span {
+	color: #EEE;
+	font-size: 1.2em;
+}
+
+
+.nav>li>a:hover  {
+	
+	border-left: 1px solid #e8eaf6;
+	/*margin-left: 10%;*/
+	transform: translate(15px,0px);
+	-webkit-transition: left 180ms ease-out, -webkit-transform 200ms ease-out;
+	background: #263238;
+	color: #fff;
+}
+
+
+/* Right panel menu styling ends here */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Left Panel styling goes here */
+
+.leftPanel {
+	borde:1px solid black; position:fixed; overflow-y:auto; height:1000%; background:#263238; colo:white;
+}
+
+/* Left Panel styling ends here */
+
+
+
+
+
+
+
+
+
+
+
+/* Right Panel styling goes here */
+
+.rightPanel {
+	borde:1px solid black; height:1000%; float:left; position:fixed; overflow:auto; background:#263238; padding:0;
+}
+
+
+/* Right Panel styling ends here */
+
+
+
+
+
+
+
+
+
+
+
+/* Posting body styling goes here */
+
+.postingBody {
+	borde:1px solid black; height:100%; position:absolute; overflow-y:auto; background:#e8eaf6;
+}
+
+
+/* Posting body styling ends here */
+
+
+
+
+
+
+
+
+
+
+.icon-bar {
+	background: black;
+}
+
+
+.rightToggle {
+	border: 1px solid black;
+}
+
+
+@media (max-width: 1360px) {
+	.rightPanel {
+		width:%;
+	}
+}
+
+
+.lineBreak {
+	margin-top:50px; border:1px solid #455a64;
+}
+
+.lineBreak2 {
+	margin-top:35px; border:1px solid #455a64;
+}
+
+
+.pinstrip {
+	position:relative; margin:-10px; background:#2e6da4; color:white; border:none; outline: none; width: 40px;
+
+}
+
+.pinstrip:hover {
+  background: white; outline: none; color: black;
+}
+	
+.shareBtn {
+	background:#eee; outline: none; width: 50px;
+}
+
+.shareBtn:hover {
+	background: white;
+}
+
+
+.btn {
+	padding: 10px;
+}
+
+.panel-success>.panel-heading {
+  background-color: #4caf50;
+  color: rgba(10,10,10,0.7);
+}	
+
+
+ </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script>
+
+// if(jQuery)
+// {
+// 	alert("jQuery library is loaded");
+// }
+// else {
+// 	alert("jQuery library is not loaded");
+// }
+
+
+
+// $('.pull-down').each(function() {
+//     $(this).css('margin-top', $(this).parent().height()-$(this).height())
+// });
+
+$(document).ready(function() {
+
+
+
+	 if(localStorage.userId==null){
+	 	$(location).attr('href',"file:///home/amaya/myProject/connect/webContent/index.html");
+
+	 }
+
+	
+	//  $('.dynamicFilter').on('click','.glyphicon-remove',function() {
+		
+	// 	$(this).parent().remove();
+	// })
+
+	 window.filterG=localStorage.tags.split(',');
+	 console.log(filterG);
+	 window.createFilter = function() {
+	 	var htm='';
+	 	filterG = filterG.filter(function(el){
+	 		return el.toLowerCase().trim() != "";
+	 	});
+	 	for(i=0;i<filterG.length;i++){
+	 		filterG[i] = filterG[i].toLowerCase();
+	 		htm+='<button class="btn btn-primary btn-rounded dynamicFilter" type="button"> '+filterG[i]+'&nbsp; <span class="badge glyphicon glyphicon-remove " onclick="remFilter(this)"> </span></button>'
+	 		$('.customFilter').html(htm);
+
+	 	}
+	 	console.log("createFilter called")
+	 	refill();
+	 }
+
+
+
+
+
+	$('.dynamicAdd').click(function() {
+		/* Act on the event */
+		var filter = $('.searchFilter').val();
+		if(filter=='') 
+		{	alert('no input');
+			return false; }
+			var htm='';
+			filter = filter.substr(0,1).toUpperCase()+filter.substr(1);
+			filterG.push(filter);
+			// $('<button>').addC	lass('btn btn-primary btn-rounded dynamicFilter').text(filter+' ').append('<span class="filter">').appendTo('.customFilter');
+			// $('.filter').addClass('badge glyphicon glyphicon-remove').text(' ');
+			// htm+='<button class="btn btn-primary btn-rounded dynamicFilter" type="button">'+filter+'<span class="badge glyphicon glyphicon-remove " onclick="remFilter(this)"> </span></button>'
+			// $('.customFilter').html(htm);
+			$('input.searchFilter').val('');
+			// $('.dynamicFilter').on('click','.glyphicon-remove',function() {
+			
+			// $(this).parent().remove();
+			createFilter();
+		})
+
+	
+
+	$('.container-1').on('keypress', '.searchFilter', function(event) {
+		// event.preventDefault();
+		/* Act on the event */
+		if(event.which == 13){
+		var htm='';	
+		var filter = $('.searchFilter').val();
+		if(filter=='') 
+		{	alert('no input');
+			return false; }
+			filterG.push(filter);
+		// $('<button>').addClass('btn btn-primary btn-rounded dynamicFilter').text(filter+' ').append('<span class="filter">').appendTo('.customFilter');
+		// $('.filter').addClass('badge glyphicon glyphicon-remove').text(' ');
+		$('input.searchFilter').val('');
+		// $('.dynamicFilter').on('click','.glyphicon-remove',function() {
+		
+		// $(this).parent().remove();
+			// htm+='<button class="btn btn-primary btn-rounded dynamicFilter" type="button">'+filter+'<span class="badge glyphicon glyphicon-remove " onclick="remFilter(this)"> </span></button>'
+			// $('.customFilter').html(htm);
+			createFilter();
+		}
+
+		
+	});
+
+
+	$('.container-1').on('keyup', '.searchPost', function(event) {
+		
+		// event.preventDefault();
+		/* Act on the event */
+		// if(event.which != 13)
+		// 	return;
+		var searchPost = $('.searchPost').val().toLowerCase();
+		// if(searchPost=='') {	
+		// 	return; 
+		// }
+		
+		//getData("abc",searchPost)
+		console.log(searchPost);
+		var data = localStorage.getItem("userData")
+		if(!data){
+			searchPost="{'search':'"+searchPost+"'}"
+			getData("abc",searchPost)
+		}
+		else{
+
+			data = JSON.parse(data);
+			data = data.filter(function(el){
+				return el.fields.tags.toLowerCase().indexOf(searchPost) != -1 || el.fields.content.toLowerCase().indexOf(searchPost) != -1 || el.fields.title.toLowerCase().indexOf(searchPost) != -1;
+			});
+			insertContent(data);
+		}
+
+		
+	});
+
+
+	window.refill=function(){
+		console.log("refill called")
+		var data = localStorage.getItem("userData");
+		data = JSON.parse(data);
+		
+		if(filterG.length==0){
+	 		insertContent(data);
+	 		return;
+	 	}
+	 		 	console.log(data);
+		data = data.filter(function(el){
+			for(i=0;i<filterG.length;i++){
+			searchPost = filterG[i];
+			if(el.fields.tags.toLowerCase().indexOf(searchPost) != -1 || el.fields.content.toLowerCase().indexOf(searchPost) != -1 || el.fields.title.toLowerCase().indexOf(searchPost) != -1)
+				return true;
+			}
+
+		});
+		console.log(data);
+		console.log("refill exiting")
+		insertContent(data);
+	}
+
+
+
+	$('.container-3').on('keypress', '.searchUser', function(event) {
+		// event.preventDefault();
+		/* Act on the event */
+		if(event.which == 13){
+			
+		var filer = $('.searchUser').val();
+		if(filer=='') 
+		{	alert('no input');
+			return false; }
+		getData(filer,"USER");
+
+		}
+	});
+
+
+
+
+	$('a').click(function(event) {
+		/* Act on the event */
+		event.preventDefault;
+	});
+
+
+	var pin;
+
+	function pinstripWork() {
+		console.log('working');
+
+		if (pin==1) {
+			$(this).css({
+			background: '#2e6da4',
+			color: '#fff'
+		});
+			pin = 0;
+
+		}
+		else {
+
+			$(this).css({
+				background: '#fff',
+				color: 'black'
+			});
+			pin = 1;
+		}	
+	};
+
+	
+
+	$('.shareBtn').on('click', function() {
+		
+		console.log('working');
+	});
+
+
+	$('.dropdown-menu li a').on('click', function() {
+		
+		$(this).parents(".dropdown").find('.btn').text($(this).text());
+
+		console.log(1);
+
+	});
+
+
+	// $('.glyphicon-plus').click(function() {
+	// 	console.log(1)
+	// 	var txt = $('input.searchFilter').val();
+	// 	txt = txt.substr(0,1).toUpperCase() + txt.substr(1);
+	// 	var newspan = $('<span>');
+	// 	$('<button>').addClass('btn btn-primary btn-rounded dynamicFilter '+txt).text(txt+' ').append(newspan).appendTo('.customFilter');
+	// 	newspan.addClass('badge glyphicon glyphicon-remove').text(' ')
+	// 	$('input.searchFilter').val('');
+
+	// })
+
+
+	$('#nameDB').text('Name : '+localStorage.name.split(' ')[0]);
+	$('#contactNoDB').text('Contact No : '+localStorage.contactNo);
+	$('#locationDB').text('Location : '+localStorage.location);
+	$('#dp').attr('src','https://graph.facebook.com/'+localStorage.fbUserName+'/picture?height=300&width=300');
+
+	getData(localStorage.userId,"ALL");
+
+
+
+	
+});
+	
+
+	function remFilter(id){
+		
+	 	$(id).parent().remove();
+	 	filterG = filterG.filter(function(el){
+	 		return el.toLowerCase().trim() != id.parentNode.innerText.toLowerCase().trim();
+	 	});
+	 	refill();
+	 }
+
+	 function myPost()
+	 {
+	 	var data = localStorage.getItem("userData");
+	 	data = JSON.parse(data);
+		data = data.filter(function(el){
+				return el.fields.userId.indexOf(localStorage.userId) != -1;
+			});
+		insertContent(data);
+	 	return false;
+	 }
+
+
+var urlStart = 'http://127.0.0.1:8000/';
+
+window.createPost=function () {
+	url=urlStart+'post/';
+	userId = localStorage.userId;
+	postTitle = $('#postTitle').val();
+	postContent = $('#postContent').val();
+	flag = localStorage.flags.substring(1);
+	var filterBy2 = '"flag":"'+flag+'"}';
+	Lifetime = $('#Lifetime').val();
+	Lifetime = '{"Lop":"'+Lifetime+'",'+filterBy2;
+	tags = $('#tags').val();
+	if(postContent==''){alert('You must give some post title');return false;}
+	var posting = $.post(url,{userId : userId, title : postTitle, content : postContent, filterBy : Lifetime, tags:tags, responseType : 'json'});
+	posting.done(function(data){
+		if(data.responseCode =='RESPONSE_CODE_SUCCESS') {
+			alert('You have successfully posted');
+			location.reload();
+		}
+		else {
+			alert(data.responseCode);
+		}
+		
+	});
+}
+
+
+
+function connect(id) {
+		var postId = id;
+		var userId = localStorage.userId;
+		var url = urlStart + "connect/";
+		var posting = $.post(url, {userId : userId, postId : postId, responseType : 'json'});
+		posting.done(function(data){ 
+			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
+			{
+				alert(data.responseString);
+				$('#badge'+postId).html(parseInt($('#badge'+postId).html())+1)
+			}
+			else
+			{
+				alert(data.responseString);
+			}
+
+		});
+		return false
+	}
+
+function saveFilters(){
+
+	userId = localStorage.userId;
+	tags = filterG.toString();
+
+	var url=urlStart+'tagHandler/';
+	var posting = $.post(url, {userId : userId, tags : tags});	
+	posting.done(function(data){
+			if(data.responseCode =='RESPONSE_CODE_SUCCESS') {
+				alert('You have successfully saved your filters');
+				localStorage.tags = tags;
+			}
+			else
+				alert(data.responseCode);
+
+		});
+
+	
+}
+
+window.getData=function(userId,filterBy) {	
+	console.log("get data called")
+	var url=urlStart+'fetchPost/';
+	var posting = $.post(url, {userId : userId, filters : filterBy,  responseType : 'json'});	
+	posting.done(function(data){
+        if(filterBy=="USER"){
+			$('#nameDB').text('Name : '+data[0].name.split(' ')[0]);
+			$('#contactNoDB').text('Contact No : '+data[0].contactNo);
+			$('#locationDB').text('Location : '+data[0].location);
+			$('#dp').attr('src','https://graph.facebook.com/'+data[0].fbUserName+'/picture?height=300&width=300');
+		}
+		localStorage.setItem("userData", JSON.stringify(data));
+		insertContent(data);
+		createFilter();
+	});
+	console.log("get data exitting")
+}
+
+window.insertContent = function(data){
+	console.log("insertcontent called")
+	var h=' ';
+	for(var i=0;i<data.length;i++){
+        	postTitle=data[i].fields.title;
+        	postContent=data[i].fields.content;
+        	postId=data[i].fields.postId;
+        	posterId=data[i].fields.userId;
+           	userId=localStorage.userId;
+        	connectCount=data[i].fields.connectCount;
+        	fbUserName = data[i].fields.fbUserName;
+        	name = data[i].fields.name;
+        	contactAuth = data[i].fields.contactNo;
+        	Lifetime=JSON.parse(data[i].fields.filterBy);
+        	Lifetime=Lifetime.Lop;
+        	var tag = data[i].fields.tags.split(',');
+        	var li='';
+        	tag.forEach(function(e,k){
+        		li += '<li role="presentation"><a role="menuitem" tabindex="-1" href="">'+e+'</a></li>'
+        	})
+        	if(tag.length==0 || tag[0]==''){
+        		li = '<li role="presentation"><a role="menuitem" tabindex="-1" href=""> No Tags </a></li>'
+        	}	
+        	addClass="panel-primary";
+        	if(userId == posterId){
+        		addClass="panel-success"
+        	}
+        	if(Lifetime=='')
+        		{Lifetime='No Deadline'}
+        a='<img src="https://graph.facebook.com/amayaranjandas/picture?height=40&amp;width=40" class="pull-right img-circle" style="margin: -6px;">'
+	 		h+='<div id="'+postId+'" class="panel '+addClass+'" style="margin:10px;"><div class="panel-heading" data-toggle="tooltip" title = "'+name+'"><img src="https://graph.facebook.com/'+fbUserName+'/picture?height=40&amp;width=40" class="pull-right img-circle" style="margin: -6px;"><label  for="" style="font-size:1.2em;">'+postTitle+'</label></div><div class="panel-body">'+postContent+'</div><div class="panel-footer" style="background:#fff;"><div class="row" style="margin:-10px;"><span class="btn btn-primary glyphicon glyphicon-user" style="borde:1px solid; padding:7px; border-radius:10px; margin-right:20px;"> : <span id="badge'+postId+'"class="badge badge-primary">'+connectCount+'</span></span><button id="'+postId+'" onclick="connect(\''+postId+'\')" class="glyphicon glyphicon-retweet btn btn-rounded shareBtn" style="margin-left:20px;"></button><label for=""><span class="glpyhicon glyphicon-hourglass" style="margin-left:20px; font-size:2em;"> </span> '+Lifetime+'</label><div class="dropdown" style="display:inline-block; margin-left:20px; "><button class="btn btn-default dropdown-toggle" style="background:white; border:1px solid grey; padding:5px;" data-toggle="dropdown" aria-expanded="true" id="dropdownMenu1"><label for="">Tags</label><label for="">. . . </label></button><ul class="dropdown-menu" style="pointer-events:none;">'+li+'</ul></div><button data-toggle="modal" data-target="#suggestPost" class="btn suggestBtn pull-right" style="borde:0.5px solid black; margin:10px; background:#78909c; color:white;" onclick="openSuggest(this)" id="sugst'+postId+'" value="'+contactAuth+'">Suggest</button></div></div></div></div>'
+
+		}
+	$('.postingBody').html(h);
+	console.log("insertcontent cexitting")
+}
+
+
+
+	var pin;
+	function pinstripWork(a, pin) {
+	//	console.log('working');
+
+		if (pin==1) {
+			a.value = 0;
+			$(a).css({
+			background: '#2e6da4',
+			color: '#fff'
+		});
+
+		}
+		else {
+
+			$(a).css({
+				background: '#fff',
+				color: 'black'
+			});
+			a.value = 1;
+		}	
+	};
+function logOut() {
+	localStorage.clear();
+	window.reload();
+}
+
+
+function sugst(){
+		var fonA = $('#sugMod').val();
+		// alert(fon+localStorage.contactNo);
+		var msg = $('#postCont').val();
+		var fonP = localStorage.contactNo;
+		posting=$.get('http://203.129.203.254/sms/user/urlsms.php',{username : 'advaita14', pass : 'b111005', senderid : '060000', message : msg, dest_mobileno : fonA, response : 'Y' });
+		posting.done(function(data){
+			alert('The author has been alerted of your suggestion');console.log('this here - ' +data);
+		});
+		posting2=$.get('http://203.129.203.254/sms/user/urlsms.php',{username : 'advaita14', pass : 'b111005', senderid : '060000', message : 'The post author has been notified of your connection. Kudos.!', dest_mobileno : fonP, response : 'Y' });		
+		posting2.done(function(data){
+			console.log('Connecter msg data ' +data);
+		});
+		
+
+		// http://203.129.203.254/sms/user/urlsms.php?username=advaita14&pass=b111005&senderid=060000&message=HTTP%20API%20Testt&dest_mobileno=8093863621&response=Y
+		$('.closeModal').trigger("click");
+	}
+
+function openSuggest(id){
+		document.getElementById('sugMod').value = id.value;
+	}
+
+function updateReg(id){
+	var regName = $('#upName').val();
+	
+		var regLocation = $('#upLocation').val();
+		var regContactNo = $('#upContactNo').val();
+		
+		var regfbUserName = $('#upFbUserName').val();
+		var userId = localStorage.userId;
+		
+		
+		var url = urlStart + "updateData/";
+		var posting = $.post(url, {name : regName, location : regLocation, userId : userId, contactNo : regContactNo, fbUserName : regfbUserName});
+		posting.done(function(data){
+			if(data.responseCode == "RESPONSE_CODE_SUCCESS"){
+				localStorage.name = regName;
+				localStorage.location = regLocation;
+				localStorage.contactNo = regContactNo;
+				localStorage.fbUserName = regfbUserName;
+				console.log(localStorage);
+				alert('You have updated your account successfully, kudos !');
+				location.reload();
+
+			}
+			else {
+				alert("Failed to update")
+			}
+		})
+	}
+
+function updateSet(){
+	$('#upLocation').val(localStorage.location);
+	$('#upName').val(localStorage.name);
+	$('#upContactNo').val(localStorage.contactNo);
+	$('#upFbUserName').val(localStorage.fbUserName);
+}
+
+
+</script>
+
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+
+
+
+<div class="container-fluid main">
+
+	<div class="row">
+		
+
+
+		<!-- Left Panel goes here -->
+
+
+		<div class="col-xs-3 leftPanel" >
+
+  					
+			<div class="container-1 input-group">
+
+			    <input type="text" class="search searchPost" placeholder="Search . . . " />
+
+			    <span class="icon"><i class="glyphicon glyphicon-search"></i></span>
+
+			</div>
+
+			<hr class="lineBreak">
+
+			
+<!-- 
+			<div class="input-group container-1">
+				
+				<input type="text" class="form-control search" placeholder="Add Custom Filters">
+
+				<span class="icon"><i class="glyphicon glyphicon-cog"></i></span>
+
+				<div class="input-group-btn">
+					
+					<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-plus"></i></button>
+
+				</div>
+
+			</div>
+
+ -->
+			
+			<div class="container-1 container-2 input-group">
+
+			    <input type="text" class="search searchFilter" placeholder="Add Custom Filters . . . " />
+
+			    <span class="icon"><i class="glyphicon glyphicon-cog"></i></span>
+
+			    <div class="input-group-btn">
+			    	
+			    	<button class="btn btn-default dynamicAdd"><i class="glyphicon glyphicon-plus"></i></button>
+
+			    </div>
+
+
+
+			</div>
+
+			
+
+
+			<div class="row customFilter" style="margin:10px; ">
+<!-- 
+
+				<button class="btn btn-primary btn-rounded dynamicFilter" type="button">
+					
+					Education <span class="badge glyphicon glyphicon-remove "> </span>
+
+				</button>
+				
+
+				<button class="btn btn-primary btn-rounded dynamicFilter" type="button">
+					
+					Fitness <span class="badge glyphicon glyphicon-remove"> </span>
+
+				</button>
+
+
+				<button class="btn btn-primary btn-rounded dynamicFilter" type="button">
+					
+					Stock Exchange <span class="badge glyphicon glyphicon-remove"> </span>
+
+				</button>
+				
+				<button class="btn btn-primary btn-rounded dynamicFilter" type="button">
+					
+					Students <span class="badge glyphicon glyphicon-remove"> </span>
+
+				</button> -->
+
+			</div>
+			<button class="btn" style="background:#b0bec5; color:black; border-radiu:7px; margin-left:17px;" onclick="saveFilters()" data-toggle="tooltip" title ="Save these filers" >Save FIlter</button>
+			
+			
+
+
+
+
+
+		</div>
+
+
+		<!-- Left Panel ends here -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- Body goes here -->
+
+
+		<div class="col-xs-6 col-xs-offset-3 postingBody" >
+
+
+		
+
+
+<!-- Successful Share Panel goes here -->
+
+		<div class="panel panel-success" style="displa:none; visibility: hidden; height:0">
+			
+			<div class="panel-heading" style="color:black;">Successful..!</div>
+
+			<div class="panel-body">You have successfully shared the post amongst your network</div>
+
+		</div>
+		
+<!-- Successful Share Panel ends here -->
+
+
+
+
+
+
+		
+		<!-- <div class="panel panel-default" style="margin:10px;">
+			
+
+			<div class="panel-body">
+
+				<div class="form-group">
+
+					<label for="Post" style="margin:px;">Content :</label>
+
+					<textarea style="margin:5px auto; width:100%; height:100px; border-radius:10px;"></textarea>
+
+				</div>
+
+
+			</div>
+
+
+
+			<div class="panel-footer">
+				
+				<button class="btn pull-right postBtn" style="margin:px; border:1px solid #212121;"><span class="glyphicon glyphicon-send" style="margin-right:5px;"></span>Post</button>
+
+				<div class="form-group" >
+					
+					<label for="Title" style="display:inline-block; text-align:right;">Title</label>
+
+					<input type="text" class="form-control" style="display:inline-block; width:30%;">
+
+					<label for="Tags" style="display:inline-block; text-align:right; margin-left:10px;">Tags</label>
+
+					<div class="dropdown" style="display:inline-block; margin-left:10px; background:#eee;">
+						
+						<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true" id="dropdownMenu1">
+							
+							. . . 
+
+							<span class="caret"></span>
+
+						</button>
+
+						<ul class="dropdown-menu" >
+							
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">. . . </a></li>
+
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something</a></li>
+
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else</a></li>
+
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something totally else</a></li>
+
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nothing else</a></li>
+
+						</ul>
+
+					</div>
+
+					
+
+				</div>
+
+			</div>
+
+		</div>
+ -->
+
+
+		<div class="panel panel-primary" style="margin:10px;">
+			
+			<div class="panel-heading">
+
+				<button class="btn btn-default btn-rounded pull-right pinstrip" style="color:#fff;"><span class="glyphicon glyphicon-pushpin"></span></button>
+
+				<label for="">Post Title</label>
+
+				
+
+			</div>
+
+			<div class="panel-body">Panel Body</div>
+
+			<div class="panel-footer" style="background:#fff;">
+			
+				<div class="row" style="margin:5px;">
+					
+					<span class="btn btn-primary glyphicon glyphicon-user" style="borde:1px solid; padding:7px; border-radius:10px; margin-right:20px;"> : <span class="badge badge-primary">5</span></span>
+
+
+					<button class="glyphicon glyphicon-retweet btn btn-rounded shareBtn" onclick="connect()" style="margin-left:20px;"></button>
+
+
+					<label for=""><span class="glpyhicon glyphicon-hourglass" style="margin-left:20px; font-size:2em;"> </span> 2/12/2005 </label>	
+
+					<button class="btn suggestBtn pull-right" style="borde:0.5px solid black; background:#78909c; color:white;">Suggest</button>
+
+				</div>
+			
+			</div>
+
+		</div>
+
+
+		</div>
+
+
+		<!-- Body ends here -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- Right Panel goes here -->
+
+
+		<div class="col-xs-3 col-xs-offset-9 menu rightPanel" style="">
+
+<!-- Minimise panel tab starts here -->
+
+			 <div class="navbar-header">
+			      <button type="button" class="navbar-toggle rightToggle" data-toggle="collapse" 
+			         data-target="#rightPanel">
+			         <span class="sr-only">Toggle navigation</span>
+			         <span class="icon-bar	"></span>
+			         <span class="icon-bar"></span>
+			         <span class="icon-bar"></span>
+			      </button>
+			      
+			   </div>
+
+<!-- Minimise panel tab ends here -->
+
+
+
+			<div class="container col-xs-13 collapse navbar-collapse" id="rightPanel" style="padding:0;  ">
+			
+
+
+				
+
+
+				<div class="row col-xs-7 pull-right" style="borde:1px solid black; margin-top:1em;">
+				
+					<img id="dp" src="https://graph.facebook.com/guest/picture?height=300&width=300" style="width:7em; margin-right:10px;" alt=""  class="img-responsive img-circle">
+
+					
+
+				</div>
+
+
+
+				<div class="row col-xs-12" style="borde:1px solid black; margin-top:0.5em;">
+				
+					<div style="color:white; margin:0px 10px 10px 30px;">
+
+						<p id="nameDB" for="">Name : </p>
+						<p id="contactNoDB" for="">Contact No : </p>
+						<p id="locationDB" for="">Location : </p>
+						<label for="">Repo : 10.0%</label>
+
+					</div>
+
+				</div>
+
+				<div class="row col-xs-12">
+					
+
+					<div class="col-xs-3">
+					<a href="" onclick="window.reload()"><span class="glyphicon glyphicon-home pull-righ" style="color:white; box-shadow:0px 0px 3px #212121; border:none; padding:7px; font-size:1.8em; margin-left:15px; margin-top:px;"></span></a>
+					</div>
+
+					<div class="col-xs-9 container-3 input-group">
+
+						<input type="text" class="search searchUser" placeholder="Search user . . . " />
+
+						<span class="icon"><i class="glyphicon glyphicon-search"></i></span>
+
+					</div>
+
+				</div>
+
+				<!-- <div class="row" style="color:white; backgroun:green; max-width:20%; border:1px solid black; padding:10px; width:100%; height:100%;">
+					
+					<ul class="nav nav-pills nav-stacked" style="border:1px solid black; padding:10px;">
+						
+						<li class="active" role="presentation"><a href="">My Posts</a></li>
+						<li role="presentation"><a href="">Notifications</a></li>
+						<li role="presentation"><a href="">Settings</a></li>
+						<li role="presentation"><a href="">Log Out</a></li>
+
+					</ul>
+
+				</div> -->
+
+
+				<!-- <div class="col-xs-12"><hr style="margin:20px; border:1px solid #455a64;" ></div> -->
+				
+				
+
+
+
+				<div class="col-xs-12 column" style="padding:; ">
+				
+				<hr class="lineBreak2" style="width:100%;">
+
+						<ul class="nav nav-stacked"  style="padding:; margin:;">
+							
+							<li class="rp"><a data-toggle="modal" data-target="#createPost"><span class="glyphicon glyphicon-plus"></span>Create Post</a></li>
+
+							<li class="rp"><a onclick="myPost()"><span class="glyphicon glyphicon-bell"></span>My Posts</a></li>
+
+							<!-- <li><a href=""><span class="glyphicon glyphicon-globe"></span>Networks</a></li> -->
+
+							<li class="rp"><a data-toggle="modal" onclick="updateSet()" data-target="#accSettings"><span class="glyphicon glyphicon-wrench"></span>Account Settings</a></li>
+
+							<li class="rp" style="borde-bottom:1px solid black;"><a href="" onclick="logOut()"><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>
+
+						</ul>
+
+
+
+				</div>
+
+
+
+
+		</div>
+
+
+		</div>
+
+		
+		<!-- Right panel ends here -->
+
+
+<!-- Account Settings Modal goes here -->
+
+
+	<div id="accSettings" class="modal fade">
+		
+		<div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Change Personal Info</h4>
+                </div>
+                <div class="modal-body">
+		            <form role="form" onsubmit="return false" id="regSub" >
+		        		
+		        		<div class="form-group" style="margin-top:10px;">
+		        			
+		        			<label for="Name">Name :</label>
+		        			<input type="text-box" class="form-control" id="upName" name="name" >
+		        		</div>
+		        		
+		        		<div class="form-group">
+		        			
+		        			<label for="Location">Location :</label>
+		        			<input type="text-box" class="form-control" id="upLocation" name="location" >
+		        		</div>
+		        		
+
+		        		<div class="form-group">
+		        			
+		        			<label for="Contact No">Contact No :</label>
+		        			<input type="number" class="form-control" id="upContactNo" name="contactNo" >
+		        		</div>
+						
+		        		<div class="form-group">
+		        			
+		        			<label for="Contact No">FB username :</label>
+		        			<input type="text" class="form-control" name="fbUserName" id="upFbUserName">
+		        		</div>
+
+
+
+		        		<!-- <div class="checkbox checkbox-primary">
+		        		
+							<label><input type="checkbox" name="f" value="1" id="f1" checked ><span class="checkbox-material" ><span class="check"></span></span>&nbsp;&nbsp;Do you wish to permit others to view your profile ?</label>
+
+		        			<label><input type="checkbox" name="f" value="2"  id="f2" checked><span class="checkbox-material"><span class="check"></span></span>&nbsp;&nbsp;Do you wish to share your contact number with others ?</label>
+		        		
+		        			<label><input type="checkbox" name="f" value="3"  id="f3" checked><span class="checkbox-material"><span class="check"></span></span>&nbsp;&nbsp;Do you wish to share your email with other users ?</label>
+		        		
+		        		
+		        		</div> -->
+			        		<div class="modal-footer">
+				                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><i class="mdi-navigation-close"></i>Close <div class="ripple-wrapper"></div></button>
+				                <button id="regSubmit" type="submit" onclick="updateReg(this)" class="btn btn-primary btn-flat" ><i class="mdi-navigation-check"></i>Submit <div class="ripple-wrapper"></div> </button>
+				                </form>
+	            			</div>
+		        	</form>
+            	</div>
+            </div>
+        </div>
+    </div>
+
+	</div>		
+
+
+<!-- Account Settings Modal ends here -->
+
+
+
+
+
+
+
+
+
+
+<!-- Create Post Modal starts here -->
+
+	<div id="createPost" class="modal fade">
+		
+		<div class="modal-dialog">
+			
+			<div class="modal-content">
+				
+				<div class="modal-header">
+					
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+					<label for="">Post Title :</label>
+
+					<input type="text" id="postTitle" class="form-control">
+
+					
+
+				</div>
+
+				<br> <br> <br>
+
+				<div class="modal-body">
+					
+					<label for="">Post Content :</label>
+
+					<textarea id="postContent" style="margin:5px auto; width:100%; height:100px; border-radius:10px;"></textarea>
+
+
+
+					<br> <br>
+
+				
+					
+					<label for="" class="pull-left" style="margin-left:px;">Lifetime of Post :</label>
+
+					<input type="date" id="Lifetime" class="form-control">
+
+						<br> <br>
+
+					<label for="" class="pull-left" style="margin-left:px;">Tags :</label>
+
+					<input type="text" id="tags" class="form-control">
+
+
+					<p> </p>
+
+					</div>
+					
+					<div class="modal-footer">
+
+					<button class="btn" id="post" onclick="createPost()" style="background:#b0bec5;">Post</button>
+
+					<button type="button" class="btn" style="background:#455a64; color:white;" data-dismiss="modal" aria-hidden="true">Close</button>	
+
+					<p> </p>				
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>		
+
+
+<!-- Create Post Modal ends here -->
+
+
+	<div id="suggestPost" class="modal fade">
+		
+		<div class="modal-dialog">
+			
+			<div class="modal-content">
+				
+				<div class="modal-header">
+					
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+					<label for="">Suggestion :</label>
+
+					
+
+					
+
+				</div>
+
+				<br> <br> <br>
+
+				<div class="modal-body">
+					
+					<label for="">Write your suggestion here :</label>
+					<input type="text" style="display:none;" id="sugMod" value=""/>
+					<textarea id="postCont" style="margin:5px auto; width:100%; height:100px; border-radius:10px;"></textarea>
+
+
+
+					<br> <br>
+
+				
+					<p> </p>
+
+									
+					<div class="modal-footer">
+
+					<button class="btn" id="post" onclick="sugst(this)" style="background:#b0bec5;"  >Suggest</button>
+
+					<button type="button" class="btn closeModal" style="background:#455a64; color:white;" data-dismiss="modal" aria-hidden="true">Close</button>	
+
+					<p> </p>				
+
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>		
+
+
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="files/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="files/js/jquery.dropdown.js"></script>
+<script type="text/javascript" src="files/js/material.js"></script>
+<script type="text/javascript" src="files/js/ripples.js"></script>
+
+</body>
+
 
 </html>

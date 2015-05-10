@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>Index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="files/css/main.css">
+<link rel="stylesheet" type="text/css" href="files/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="files/css/bootstrap-theme.min.css">
+<script type="text/javascript" src="files/js/jquery.min.js"></script>
+<style type="text/css">
+		@media screen and (min-width: 1px) and (max-width: 480px){
+		  #columns[data-columns]::before {
+		    content: '1 .col-xs-12';
+		  }
+		}
+
+        @media screen and (min-width: 481px) and (max-width: 767px){
+		  #columns[data-columns]::before {
+		    content: '2 .col-xs-6';
+		  }
+		}
+		@media screen and (min-width:768px) and (max-width: 991px){
+		  #columns[data-columns]::before {
+		    content: '3 .col-sm-4';
+		  }
+		}
+		@media screen and (min-width:992px) and (max-width: 9999px){
+		  #columns[data-columns]::before {
+		    content: '4 .col-md-3';
+		  }
+		}
+</style>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#settings").hide();
+	$("#postIcon").hide();
+    getPost("ALL");
+	if(localStorage.userId!=null) {
+
+		logMeIn();
+	}
+
+});
+
+if(!window.localStorage) {
+    alert("Your browser doesn't support some features.\nSo please, upgrade or change the current browser.");
+	$('body').html('');
+	window.close();
+}
+
+
+
+var urlStart = "http://127.0.0.1:8000/"
+	function sub(){
+		var regName = $('#regName').val();
+		var regDob = $('#regDob').val();
+		var regLocation = $('#regLocation').val();
+		var regGender = $('#regGender').val();
+		var regEmail = $('#regEmail').val();
+		var regContactNo = $('#regContactNo').val();
+		var regPassword = $('#regPassword').val();
+		var  f1= 0;
+		var  f2= 0;
+		var  f3= 0;
+		if(document.getElementById('f1').checked)
+			{f1 = 1;}
+		if(document.getElementById('f2').checked)
+			{f2 = 1;}
+		if(document.getElementById('f3').checked)
+			{f3 = 1;}
+		var flags = f1+""+f2+""+f3;
+		var url = urlStart + "register/";
+		var posting = $.post(url, {name : regName, dob : regDob, location : regLocation, gender : regGender, email : regEmail, contactNo : regContactNo, password : regPassword, flags : flags, responseType : 'json'});
+		posting.done(function(data){ 
+			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
+			{
+				alert('You have been sucessfully registered');
+				location.reload();
+			}
+			else
+			{
+				alert('Failed to register. Your emailId or phone might be registered');
+			}
+		});
+
+		return false;
+
+	}
+
+	function logMeIn(){
+		$("#loggedLogin").hide();
+		$("#loggedSignUp").hide();
+		$("#login").hide();
+		$("#register").hide();
+		$("#settings").show();
+		$("#postIcon").show();
+		var n = localStorage.name;
+		n = n.split(" ")[0];
+		$("#loggedUser").html("Howdy    " + n + " !")
+
+
+	}	
+
+	function logMeOut(){
+		localStorage.clear();
+	}
+
+	function login(){
+		var username = $('#username').val();
+		var password = $('#pwd').val();
+		var url = urlStart + "login/";
+		var posting = $.post(url, {userName : username, password : password, responseType : 'json'});
+		posting.done(function(data){
+			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
+			{
+				alert('You have been sucessfully signed in');
+				localStorage.name = data.name;
+				localStorage.dob = data.dob;
+				localStorage.gender = data.gender;
+				localStorage.userId = data.userId;
+				localStorage.contactNo = data.contactNo;
+				localStorage.flags = data.flags;
+				localStorage.fbUserName = data.fbUserName;
+				localStorage.tags = data.tags;
+				localStorage.location = data.location;
+				localStorage.email = data.email;
+				location.reload();
+				logMeIn();	
+			}
+			else
+			{
+				alert(data.responseCode);
+			}
+		});
+
+		return false
+	}
+
+
+
+
+	function post(){
+		var postTitle = $('#postTitle').val();
+		var postContent = $('#postContent').val();
+		var postTags = $('#postTags').val();
+		var url = urlStart + "post/";
+		var flag = localStorage.flags.substring(1);
+		var userId = localStorage.userId;
+		var filterBy = "{'flag':'"+flag+"'}";
+		var posting = $.post(url, {userId : userId, title : postTitle, content : postContent, tags : postTags,filterBy : filterBy,  responseType : 'json'});
+		posting.done(function(data){ 
+			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
+			{
+				alert('You have sucessfully Posted your post');
+			}
+			else
+			{
+				alert(data.responseCode);
+			}
+			location.reload();
+		});
+		return false
+	}
+
+
+
+	function connect(id) {
+
+		var postId = id;
+		var userId = localStorage.userId;
+		var url = urlStart + "connect/";
+		var posting = $.post(url, {userId : userId, postId : postId, responseType : 'json'});
+		posting.done(function(data){ 
+			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
+			{
+				alert(data.responseString);
+			}
+			else
+			{
+				alert(data.responseCode);
+			}
+			location.reload();
+		});
+		return false
+	}
+
+	function searchPost() {
+
+		var searchId = $('#searchBox').val();
+		var filter = "{'search':'"+searchId+"'}";
+		getPost(filter);
+
+	}
+
+	function check(val){
+
+		var oldPass = document.getElementById('regPassword').value;
+		var newPass = val.value;
+		if (newPass == oldPass)
+			{
+				document.getElementById('checker').className="glyphicon glyphicon-ok form-control-feedback";
+
+			}
+	}
+</script>
+</head>
+<body class="full">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- NAVBAR MODULE version 2 HERE-->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarHeader">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand btn" style="color:white;" id="userData" href="#"><span class="glyphicon glyphicon-transfer" style="margin:4px 12px 0 10px;">CONNECT</span> </a>
+
+            </div>
+            
+            <div class="collapse navbar-collapse" id="navbarHeader">
+            	<form class="navbar-form navbar-left" role="search">
+
+			        <div class="form-group">
+			          <input type="text" id="searchBox" style="margin-left:5em; width:500px;" class="form-control" placeholder="Search">
+			        </div>
+
+					
+			        <span type="button" onClick="searchPost()" class="btn btn-default glyphicon glyphicon-search" style="font-siz:15px; margin:5px;" aria-hidden="true"></span>
+			      </form>
+			      <ul class="nav navbar-nav navbar-right" style="margin-top:5px;">
+			        
+			        	<li><a href="#" id="loggedUser" data-toggle="modal" class="btn" style="color:white;">Home <span class="glyphicon glyphicon-home" style="font-siz:15px;" ></span></a></li>
+
+						<li><a href="#postingModal" data-toggle="modal" class="btn btn-succes btn-mini" style="color:white; borde:1px solid white; backgroun:#77BE56;" role="button"id="postIcon" >Post <span class="glyphicon glyphicon-plus" style="font-size:15px;" aria-hidden="true"></span></a></li>
+				        <li><a href="#login" data-toggle="modal" id="loggedLogin" class="btn btn-primar btn-mini" style="color:white; borde:1px solid white; " role="button" data-toggle="modal" data-qts="LoginButton">Login</a></li>
+				        <li><a href="#register" data-toggle="modal" id="loggedSignUp" class="btn btn-succes btn-mini" style="color:white; borde:1px solid white; backgroun:#77BE56;" role="button"  data-qts="LoginButton">Sign Up</a></li>
+				    
+				        <li id="settings" class="dropdown">
+				         <a href="#" class="dropdown-toggle" style="color:white;" data-toggle="dropdown" role="button" aria-expanded="false">Settings &nbsp;<span class="glyphicon glyphicon-cog" styl="font-size:15px;" aria-hidden="true"></span></a>
+				         	<ul class="dropdown-menu" role="menu">
+
+					            <li><a href="" onclick="logMeOut()">Log out</a></li>
+					            
+					            <li class="divider"></li>
+					            <li><a href="#">Help</a></li>
+					        </ul>
+			        	</li>
+			        	
+			      	</ul>         
+            </div>
+        
+        </div>
+        
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- NAVBAR MODULE version 1 HERE -->
+<!-- 
+<header class="container-fluid">
+		
+		<div class="row darkerBG">
+			
+			<a href="#register" data-toggle="modal" style=" font-size:18px;"><div class="col-xs-2 darkBG" style="text-align:center;">Hey, Abinash &nbsp;<span class="glyphicon glyphicon-cog" style="font-size:18px;" aria-hidden="true"></span></div></a>
+			<a href="#" data-toggle="modal"><div class="col-xs-1 suppBG" style="text-align:center"></div></a>
+			
+			<div class="col-xs-5 col-xs-offset- suppBG" >
+				
+				<input type="text" placeholder="Search text here" class="form-control" style="float:left; width:90%;" />&nbsp; <span class=" glyphicon glyphicon-search" style="font-size:18px; margin:5px;" aria-hidden="true"></span>
+
+				
+			</div>
+			
+			<a href="#" data-toggle="modal" style=""><div class="col-xs-1 darkBG" style="text-align:center; font-size:15px;">Home <span class="glyphicon glyphicon-home" style="font-size:15px;" aria-hidden="true"></span></div></a>
+			<a href="#" data-toggle="modal" style=""><div class="col-xs-1 darkBG" style="text-align:center; font-size:15px;">Post <span class="glyphicon glyphicon-plus" style="font-size:15px;" aria-hidden="true"></span></div></a>
+			<a href="#login" data-toggle="modal" style=" font-size:18px;"><div class="col-xs-1 col-xs-push- pull-right darkBG" style="text-align:center">Login</div></a>
+
+		</div>
+	
+</header>	
+ -->
+
+	
+
+
+
+
+
+<!-- LOGIN MODULE HERE -->
+
+<div id="login" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+
+            	<form onsubmit="return false" role="form">
+            		
+            		<div class="form-group">
+            			
+            			<label for="username">Username :</label>
+            			<input name="username" type="text-box" class="form-control" id="username">
+            		</div>
+            		<div class="form-group">
+            			
+            			<label for="Password">Password :</label>
+            			<input name="password" type="password" class="form-control" id="pwd">
+            		</div>
+<!--             		<div class="checkbox">
+            			<label><input type="checkbox">Remember me</label>
+            		</div>
+            		
+            	
+                <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+ -->            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" onclick="login()" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- POSTING MODAL HERE  -->
+
+<div id="postingModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div> -->
+            <div class="modal-body">
+
+            	<form onsubmit="return false" role="form">
+            		
+            		<div class="form-group">
+            			
+            			<label for="title">Title :</label>
+            			<input name="postTitle" placeholder="Title goes here " type="text-box" class="form-control" id="postTitle">
+            			<hr>
+            			<label for="content">Content :</label>
+            			<textarea name="postContent"  placeholder="Your post goes here " rows="10" cols="30" class="form-control" id="postContent"></textarea>
+            			<hr>
+            			<label for="tags">Tags :</label>
+            			<input name="postTags" type="text-box" placeholder="Finance, Education, Corporate, LifeStyle" class="form-control" id="postTags" >
+            <!-- 			<input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />  -->
+            		</div><!-- 
+            		<div class="form-group">
+            			
+            			<label for="Password">Password :</label>
+            			<input name="password" type="password" class="form-control" id="pwd">
+            		</div> -->
+<!--             		<div class="checkbox">
+            			<label><input type="checkbox">Remember me</label>
+            		</div>
+            		
+            	
+                <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+ -->            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" onclick="post()" class="btn btn-primary">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- REGISTER MODULE HERE -->
+
+<div id="register" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sign Up</h4>
+                </div>
+                <div class="modal-body">
+		            <form role="form" onsubmit="return false" id="regSub" >
+		        		
+		        		<div class="form-group">
+		        			
+		        			<label for="Name">Name :</label>
+		        			<input type="text-box" class="form-control" name="name" id="regName">
+		        		</div>
+		        		<div class="form-group">
+		        			
+		        			<label for="Date Of Birth">Date Of Birth :</label>
+		        			<input type="date" class="form-control input-group date" name="dob" id="regDob">
+
+		        			
+		        		</div>
+		        		<div class="form-group">
+		        			
+		        			<label for="Location">Location :</label>
+		        			<input type="text-box" class="form-control" name="location" id="regLocation">
+		        		</div><br />
+		        		<div class="form-group">
+		        			<b>Gender : </b>
+							  <input type="radio" style="margin-left:10px;" name="gender" value="M" id="regGender">&nbsp;Male&nbsp;
+
+
+							  <input type="radio" name="gender" value="F">&nbsp;Female&nbsp;
+
+							  <input type="radio" name="gender" value="T">&nbsp;Trans-Gender&nbsp;
+
+		        		</div>
+		        		<br />
+		        		<div class="form-group">
+		        			
+		        			<label for="Email">Email :</label>
+		        			<input type="text-box" class="form-control" name="email" id="regEmail">
+		        		</div>
+		        		<div class="form-group">
+		        			
+		        			<label for="Contact No">Contact No :</label>
+		        			<input type="text-box" class="form-control" name="contactNo" id="regContactNo">
+		        		</div>
+		        		<div class="form-group">
+		        			
+		        			<label for="Password">Password :</label>
+		        			<input type="password" class="form-control" name="password" id="regPassword">
+		        		</div>
+
+		        		<div class="form-group has-feedback">
+		        			
+		        			<label for="Confirm Password">Confirm Password :</label>
+		        			<input onkeyup="check(this)" type="password" onkeypress="chckPassowrd(this.value);" class="form-control" id="regConfirmPassword">
+		        			<i id="checker" class=" glyphicon glyphicon-remove form-control-feedback"></i>
+		        		</div>
+		        		<div class="checkbox">
+		        		
+							<label><input type="checkbox" name="f" value="1" id="f1" checked>Do you wish to permit others to view your profile ?</label>
+
+		        			<label><input type="checkbox" name="f" value="2"  id="f2" checked>Do you wish to share your contact number with others ?</label>
+		        		
+		        			<label><input type="checkbox" name="f" value="3"  id="f3" checked>Do you wish to share your email with other users ?</label>
+		        		
+		        		
+		        		</div>
+			        		<div class="modal-footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				                <button id="regSubmit" type="submit" onclick="sub()" class="btn btn-primary" >Submit</button>
+				                </form>
+	            			</div>
+		        	</form>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Unworked SLide Menu here -->
+
+<!-- 
+<nav>
+<ul class="list-unstyled main-menu">
+ 
+
+    <li class="text-right"><a href="#" id="nav-close">X</a></li>
+    <li><a href="#">Menu One <span class="icon"></span></a></li>
+    <li><a href="#">Menu Two <span class="icon"></span></a></li>
+    <li><a href="#">Menu Three <span class="icon"></span></a></li>
+    <li><a href="#">Dropdown</a>
+      <ul class="list-unstyled">
+          <li class="sub-nav"><a href="#">Sub Menu One <span class="icon"></span></a></li>
+          <li class="sub-nav"><a href="#">Sub Menu Two <span class="icon"></span></a></li>
+          <li class="sub-nav"><a href="#">Sub Menu Three <span class="icon"></span></a></li>
+          <li class="sub-nav"><a href="#">Sub Menu Four <span class="icon"></span></a></li>
+          <li class="sub-nav"><a href="#">Sub Menu Five <span class="icon"></span></a></li>
+      </ul>
+    </li>
+    <li><a href="#">Menu Four <span class="icon"></span></a></li>
+    <li><a href="#">Menu Five <span class="icon"></span></a></li>
+  </ul>
+</nav>
+ 
+<div class="navbar navbar-inverse navbar-fixed-top">      
+ 
+
+    
+    <div class="navbar-header pull-right">
+      <a id="nav-expander" class="nav-expander fixed">
+        MENU &nbsp;<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </a>
+    </div>
+</div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="container" style="position:relative; margin-top:100px;">
+
+		  
+		  <div id="columns" data-columns>
+		  	
+		  	<div></div>
+		  	<div></div>
+
+		  </div>
+		</div>		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+		</script>
+
+<script type="text/javascript" src="files/js/main.js"></script>
+
+<script src="salvattore.js"></script>
+<script type="text/javascript" src="files/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -12,3 +12,5 @@ class users(models.Model):
     doj = models.DateTimeField(auto_now_add=True)
     flags = models.CharField(max_length=3)
     password = models.CharField(max_length=200)
+    tags = models.CharField(max_length=1000,default="")
+    fbUserName = models.CharField(max_length=200,default="guest")

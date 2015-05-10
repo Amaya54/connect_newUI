@@ -33,10 +33,16 @@ def getPost(userId,filters):
 			user = postDetails.objects.order_by('-dop')[:50]
 		elif filters == 'ME':
 			user = postDetails.objects.all().filter(userId = userId).order_by('-dop')[:50]
+		elif filters == 'USER':
+			user = postDetails.objects.all().filter(userId = userId).order_by('-dop')[:50]
 		else:
 			filters = eval(filters);
-			k = "%"+filters['search']+"%"
-			user = postDetails.objects.extra(where=["tags like %s OR content like %s OR title like %s"], params =[k,k,k]).order_by('-dop') [:50]
+			if filters.has_key('search'):
+				k = "%"+filters['search']+"%"
+				user = postDetails.objects.extra(where=["tags like %s OR content like %s OR title like %s"], params =[k,k,k]).order_by('-dop') [:50]
+			else:
+				print filters['searchall']
+				user = postDetails.objects.extra(where=["tags like %s OR content like %s OR title like %s"], params =[k,k,k]).order_by('-dop') [:50]
 
 	except postDetails.DoesNotExist, e:
 		print "Exception "+str(e)

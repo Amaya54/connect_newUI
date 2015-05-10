@@ -1,122 +1,325 @@
 <!DOCTYPE html>
-<html >
-<head>
-	<title>Index</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
 
-<link rel="stylesheet" type="text/css" href="files/css/main.css">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="files/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="files/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="files/css/bootstrap-theme.min.css">
-<script type="text/javascript" src="files/js/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<style type="text/css">
-		@media screen and (min-width: 1px) and (max-width: 480px){
-		  #columns[data-columns]::before {
-		    content: '1 .col-xs-12';
-		  }
-		}
+<link rel="stylesheet" type="text/css" href="files/css/material.css">
+<link rel="stylesheet" type="text/css" href="files/css/material-fullpalette.css">
+<link rel="stylesheet" type="text/css" href="files/css/material.min.css">
+<link rel="stylesheet" type="text/css" href="files/css/roboto.min.css">
+<link rel="stylesheet" type="text/css" href="files/css/ripples.min.css">
 
-        @media screen and (min-width: 481px) and (max-width: 767px){
-		  #columns[data-columns]::before {
-		    content: '2 .col-xs-6';
-		  }
-		}
-		@media screen and (min-width:768px) and (max-width: 991px){
-		  #columns[data-columns]::before {
-		    content: '3 .col-sm-4';
-		  }
-		}
-		@media screen and (min-width:992px) and (max-width: 9999px){
-		  #columns[data-columns]::before {
-		    content: '4 .col-md-3';
-		  }
-		}
-</style>
-<script type="text/javascript">
+<script src="files/js/jquery-2.1.3.js"></script>
 
-$(document).ready(function() {
-	$("#settings").hide();
-	$("#postIcon").hide();
-    getPost("ALL");
-	if(localStorage.userId!=null) {
 
-		logMeIn();
-	}
+<style>
+	
+/*	
+    h1{
+        font-size:5.9vw;
+    }
+*/
 
-});
 
-if(!window.localStorage) {
-    alert("Your browser doesn't support some features.\nSo please, upgrade or change the current browser.");
-	$('body').html('');
-	window.close();
+.glyphicon.glyphicon-forward {
+
+	font-size: 30px;
+
+}
+
+/*.form-login .form-control {
+	
+	padding: 1px;
+}
+
+.col-xs-4 .form-control input {
+
+	padding: 1px;
+}
+*/
+
+.chkbox {margin: 8px;}
+
+a : hover {
+
+	text-decoration: none;
 }
 
 
+ul > li {padding:10px; font-size: 1.3em;}
 
-var urlStart = "http://127.0.0.1:8000/"
+.btn-rounded {
+	border-radius: 50px;
+	border: 1px solid #78909c;
+	background: #78909c;
+	outline: none;
+	color: #212121;
+}
+
+
+</style>
+
+
+<script>
+
+// if(jQuery)
+// {
+// 	alert("jQuery library is loaded");
+// }
+// else {
+// 	alert("jQuery library is not loaded");
+// }
+
+
+
+// $('.pull-down').each(function() {
+//     $(this).css('margin-top', $(this).parent().height()-$(this).height())
+// });
+
+
+// Password check script goes here
+
+// <div class="form-group has-success has-feedback">
+//   <label class="control-label" for="inputSuccess2">Input with success</label>
+//   <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+//   <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+//   <span id="inputSuccess2Status" class="sr-only">(success)</span>
+// </div>
+// <div class="form-group has-warning has-feedback">
+//   <label class="control-label" for="inputWarning2">Input with warning</label>
+//   <input type="text" class="form-control" id="inputWarning2" aria-describedby="inputWarning2Status">
+//   <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+//   <span id="inputWarning2Status" class="sr-only">(warning)</span>
+// </div>
+// <div class="form-group has-error has-feedback">
+//   <label class="control-label" for="inputError2">Input with error</label>
+//   <input type="text" class="form-control" id="inputError2" aria-describedby="inputError2Status">
+//   <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+//   <span id="inputError2Status" class="sr-only">(error)</span>
+// </div>
+// <div class="form-group has-success has-feedback">
+//   <label class="control-label" for="inputGroupSuccess1">Input group with success</label>
+//   <div class="input-group">
+//     <span class="input-group-addon">@</span>
+//     <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+//   </div>
+//   <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+//   <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+// </div>
+
+
+
+
+
+// function whyUs() {
+
+// 	document.getElementById("whyUs").style.left="0%"
+// }
+
+$(document).ready(function(){
+
+
+	if(localStorage.userId!=null){
+		$(location).attr('href',"file:///home/amaya/myProject/connect/webContent/homepage.html");
+	}
+
+
+	$('#whyLink').click(function(ev){
+		ev.preventDefault();
+		$('#whyUs').animate({"left":"0%"}, 1000)
+
+	})
+
+
+	$('#whyLinkBack').click(function(ev){
+		ev.preventDefault();
+		$('#whyUs').animate({"left":"-100%"}, 1000)
+
+	})
+
+
+	$('#guideLink').click(function(ev){
+		ev.preventDefault();
+		$('#guide').animate({"right":"0%"}, 1000)
+
+	})
+
+
+	$('#guideLinkBack').click(function(ev){
+		ev.preventDefault();
+		$('#guide').animate({"right":"-100%"}, 1000)
+
+	})
+
+
+	$('#regSubmit').on('click', function(event) {
+		event.preventDefault();
+		
+	});
+
+	$('#password').keyup(function(ev){
+		
+		if(event.which == 13){
+		logIn();}	
+	});
+
+
+});
+
+
+
+
+
+
+
+function chckPassword() {
+		
+		var passwd = $('#primaryPass').val();
+		
+		var tempPass = $('#regConfirmPass').val();
+		//console.log(passwd, tempPass);
+
+		if(tempPass==passwd) {
+			$('.cnfPassGlyph').attr('class','glyphicon glyphicon-ok form-control-feedback cnfPassGlyph');console.log('here1');
+			$('.cnfPassDiv').attr('class','form-group has-success has-feedback cnfPassDiv');
+		}
+		else {
+			$('.cnfPassGlyph').attr('class','glyphicon glyphicon-remove form-control-feedback cnfPassGlyph');console.log('here2');
+			$('.cnfPassDiv').attr('class','form-group has-error has-feedback cnfPassDiv');
+		}
+		// if(cnfPasswd!=passwd) {
+		// 	$('.cnfPassDiv').attr('class','form-group has-warning has-feedback');
+		// 	$('.cnfPassGlyph').attr('class','glyphicon glyphicon-warning-sign form-control-feedback');
+		// }
+		// else {
+		// 	$('.cnfPassDiv').attr('class','form-group has-warning has-feedback');
+		// 	$('.cnfPassGlyph').attr('class','glyphicon glyphicon-ok form-control-feedback');console.log(1);
+		// }
+
+
+		return tempPass==passwd;
+
+	}
+
+
+
+
+
+
+// APIs starts here
+
+
+
+	var urlStart = 'http://127.0.0.1:8000/';
+
+// register API
+
 	function sub(){
+		if (!validRegister())
+			{return false;}
 		var regName = $('#regName').val();
 		var regDob = $('#regDob').val();
 		var regLocation = $('#regLocation').val();
-		var regGender = $('#regGender').val();
-		var regEmail = $('#regEmail').val();
 		var regContactNo = $('#regContactNo').val();
-		var regPassword = $('#regPassword').val();
-		var  f1= 0;
-		var  f2= 0;
-		var  f3= 0;
-		if(document.getElementById('f1').checked)
-			{f1 = 1;}
-		if(document.getElementById('f2').checked)
-			{f2 = 1;}
-		if(document.getElementById('f3').checked)
-			{f3 = 1;}
-		var flags = f1+""+f2+""+f3;
+		var regEmail = $('#regEmail').val();
+		var regfbUserName = $('#regfbUserName').val();
+		var regConfirmPass = $('#regConfirmPass').val();
+		var regGender = $('input[name="sample1"]:checked').val();
+		if(regfbUserName==''){
+			regfbUserName='guest';
+		}
+		var f1=0, f2=0, f3=0;
+		if($('#f1').prop("checked")){
+			f1=1;
+		}
+		if($('#f2').prop("checked")){
+			f2=1;
+		}
+		if($('#f3').prop("checked")){
+			f3=1;
+		}
+		var flag = f1+''+f2+''+f3;
+		
 		var url = urlStart + "register/";
-		var posting = $.post(url, {name : regName, dob : regDob, location : regLocation, gender : regGender, email : regEmail, contactNo : regContactNo, password : regPassword, flags : flags, responseType : 'json'});
-		posting.done(function(data){ 
-			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
-			{
-				alert('You have been sucessfully registered');
+		var posting = $.post(url, {name : regName, dob : regDob, location : regLocation, gender : regGender, email : regEmail, contactNo : regContactNo, password : regConfirmPass, fbUserName : regfbUserName, flags : flag, responseType : "json"});
+		posting.done(function(data){
+			if(data.responseCode == "RESPONSE_CODE_SUCCESS"){
+				alert('You have been successfully registered, kudos !');
 				location.reload();
 			}
-			else
-			{
-				alert('Failed to register. Your emailId or phone might be registered');
+			else {
+				alert("Failed to register. Your email or contact no might be pre-registered.")
 			}
 		});
 
 		return false;
 
+}
+	function validRegister(){
+
+		
+
+		if($('#regName').val()=='') {
+			alert('Name field cannot be empty');
+			return false;
+		}
+		
+		if($('#regLocation').val()=='') {
+			alert('Location field cannot be empty');
+			return false;
+		}
+
+		
+		if($('#regEmail').val()=='') {
+			alert('Email field cannot be empty');
+			return false;
+		}
+		else{
+			var emailReg = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+			if(!emailReg.test( $('#regEmail').val() )){
+				alert('Not a valid Email');
+				return false;
+			}
+		}
+
+
+		if($('#regContactNo').val()=='') {
+			alert('Contact No cannot be left empty');
+			return false;
+		}
+		else if(!$.isNumeric($('#regContactNo').val())){
+			alert('Invalid contactNo');
+			return false;
+		}
+		else if($('#regContactNo').val().length != 10){
+			alert('contactNo should be of 10 digits');
+			return false;
+		}
+
+		if($('#regConfirmPass').val()=='') {
+			alert('Password field cannot be empty');
+			return false;
+		}
+
+		return true;
 	}
 
-	function logMeIn(){
-		$("#loggedLogin").hide();
-		$("#loggedSignUp").hide();
-		$("#login").hide();
-		$("#register").hide();
-		$("#settings").show();
-		$("#postIcon").show();
-		var n = localStorage.name;
-		n = n.split(" ")[0];
-		$("#loggedUser").html("Howdy    " + n + " !")
 
 
-	}	
 
-	function logMeOut(){
-		localStorage.clear();
-	}
+// 	Log In APIs
 
-	function login(){
-		var username = $('#username').val();
-		var password = $('#pwd').val();
-		var url = urlStart + "login/";
-		var posting = $.post(url, {userName : username, password : password, responseType : 'json'});
-		posting.done(function(data){
-			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
-			{
-				alert('You have been sucessfully signed in');
+		function logIn(){
+			url = urlStart +"login/";
+			var username = $('#username').val();
+			var password = $('#password').val();
+			var posting = $.post(url, {userName : username, password : password, responseType : "json"});
+			posting.done(function(data){
+				if(data.responseCode =='RESPONSE_CODE_SUCCESS'){
 				localStorage.name = data.name;
 				localStorage.dob = data.dob;
 				localStorage.gender = data.gender;
@@ -124,236 +327,297 @@ var urlStart = "http://127.0.0.1:8000/"
 				localStorage.contactNo = data.contactNo;
 				localStorage.flags = data.flags;
 				localStorage.location = data.location;
-				localStorage.email = data.email;
-				location.reload();
-				logMeIn();	
-			}
-			else
-			{
-				alert(data.responseCode);
-			}
-		});
+				localStorage.email = data.email;				
+				localStorage.tags = data.tags;
+				localStorage.fbUserName = data.fbUserName;
+				$(location).attr('href',"file:///home/amaya/myProject/connect/webContent/homepage.html");
+				}
+				else {
+					alert(data.responseCode);
+				}
+			});
 
-		return false
-	}
-
-
-
-
-	function post(){
-		var postTitle = $('#postTitle').val();
-		var postContent = $('#postContent').val();
-		var postTags = $('#postTags').val();
-		var url = urlStart + "post/";
-		var flag = localStorage.flags.substring(1);
-		var userId = localStorage.userId;
-		var filterBy = "{'flag':'"+flag+"'}";
-		var posting = $.post(url, {userId : userId, title : postTitle, content : postContent, tags : postTags,filterBy : filterBy,  responseType : 'json'});
-		posting.done(function(data){ 
-			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
-			{
-				alert('You have sucessfully Posted your post');
-			}
-			else
-			{
-				alert(data.responseCode);
-			}
-			location.reload();
-		});
-		return false
-	}
-
-
-
-	function connect(id) {
-
-		var postId = id;
-		var userId = localStorage.userId;
-		var url = urlStart + "connect/";
-		var posting = $.post(url, {userId : userId, postId : postId, responseType : 'json'});
-		posting.done(function(data){ 
-			if(data.responseCode == 'RESPONSE_CODE_SUCCESS')
-			{
-				alert(data.responseString);
-			}
-			else
-			{
-				alert(data.responseCode);
-			}
-			location.reload();
-		});
-		return false
-	}
-
-	function searchPost() {
-
-		var searchId = $('#searchBox').val();
-		var filter = "{'search':'"+searchId+"'}";
-		getPost(filter);
-
-	}
-
-	function check(val){
-
-		var oldPass = document.getElementById('regPassword').value;
-		var newPass = val.value;
-		if (newPass == oldPass)
-			{
-				document.getElementById('checker').className="glyphicon glyphicon-ok form-control-feedback";
-
-			}
-	}
-</script>
-</head>
-<body class="full">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- NAVBAR MODULE version 2 HERE-->
-
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarHeader">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand btn" style="color:white;" id="userData" href="#"><span class="glyphicon glyphicon-transfer" style="margin:4px 12px 0 10px;">CONNECT</span> </a>
-
-            </div>
-            
-            <div class="collapse navbar-collapse" id="navbarHeader">
-            	<form class="navbar-form navbar-left" role="search">
-
-			        <div class="form-group">
-			          <input type="text" id="searchBox" style="margin-left:5em; width:500px;" class="form-control" placeholder="Search">
-			        </div>
-
-					
-			        <span type="button" onClick="searchPost()" class="btn btn-default glyphicon glyphicon-search" style="font-siz:15px; margin:5px;" aria-hidden="true"></span>
-			      </form>
-			      <ul class="nav navbar-nav navbar-right" style="margin-top:5px;">
-			        
-			        	<li><a href="#" id="loggedUser" data-toggle="modal" class="btn" style="color:white;">Home <span class="glyphicon glyphicon-home" style="font-siz:15px;" ></span></a></li>
-
-						<li><a href="#postingModal" data-toggle="modal" class="btn btn-succes btn-mini" style="color:white; borde:1px solid white; backgroun:#77BE56;" role="button"id="postIcon" >Post <span class="glyphicon glyphicon-plus" style="font-size:15px;" aria-hidden="true"></span></a></li>
-				        <li><a href="#login" data-toggle="modal" id="loggedLogin" class="btn btn-primar btn-mini" style="color:white; borde:1px solid white; " role="button" data-toggle="modal" data-qts="LoginButton">Login</a></li>
-				        <li><a href="#register" data-toggle="modal" id="loggedSignUp" class="btn btn-succes btn-mini" style="color:white; borde:1px solid white; backgroun:#77BE56;" role="button"  data-qts="LoginButton">Sign Up</a></li>
-				    
-				        <li id="settings" class="dropdown">
-				         <a href="#" class="dropdown-toggle" style="color:white;" data-toggle="dropdown" role="button" aria-expanded="false">Settings &nbsp;<span class="glyphicon glyphicon-cog" styl="font-size:15px;" aria-hidden="true"></span></a>
-				         	<ul class="dropdown-menu" role="menu">
-
-					            <li><a href="" onclick="logMeOut()">Log out</a></li>
-					            
-					            <li class="divider"></li>
-					            <li><a href="#">Help</a></li>
-					        </ul>
-			        	</li>
-			        	
-			      	</ul>         
-            </div>
-        
-        </div>
-        
-    </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- NAVBAR MODULE version 1 HERE -->
-<!-- 
-<header class="container-fluid">
+			return false;
+		}
 		
-		<div class="row darkerBG">
-			
-			<a href="#register" data-toggle="modal" style=" font-size:18px;"><div class="col-xs-2 darkBG" style="text-align:center;">Hey, Abinash &nbsp;<span class="glyphicon glyphicon-cog" style="font-size:18px;" aria-hidden="true"></span></div></a>
-			<a href="#" data-toggle="modal"><div class="col-xs-1 suppBG" style="text-align:center"></div></a>
-			
-			<div class="col-xs-5 col-xs-offset- suppBG" >
-				
-				<input type="text" placeholder="Search text here" class="form-control" style="float:left; width:90%;" />&nbsp; <span class=" glyphicon glyphicon-search" style="font-size:18px; margin:5px;" aria-hidden="true"></span>
 
-				
+		
+		
+		</script>
+		
+		</head>
+		
+		
+		
+		
+		
+		
+		
+		
+		<body style="overflow:hidden;">
+		
+		
+<!-- Why Us goes here -->
+
+
+<div class="container-fluid" id="whyUs" style="background:; overflow:hidden; height:100%; width:100%; z-index:1; position:absolute; left:-100%;">
+	
+
+	<div class="row col-xs-13" >
+		
+
+		<div class="panel panel-primary col-xs-12 col-xs-offset" style="position:fixed; height:100%; margin:;">
+		
+		
+		
+
+		<div class="panel-heading " style="width:100%; font-size:3em; color:#fff; margin-top:10px;">What sets us apart . . . </div>
+
+		
+		  
+
+
+		  <div class="panel-body">
+
+			  <ul style=" margin:10px;">
+			  	
+			  	<li>A flexible business model able to integrate with any kind of business</li>
+			  	<li>Direct user to need connection, evading any intermediary ties</li>
+			  	<li>Professional use integrated into a facade of social networking</li>
+			  	<li>"Repo" - our unique user/connector judgement rating system, based on our complex algorithm</li>
+			  	<li>"Filters" - browse through the ocean of posts with ease via our filters and save when your session time with us ends</li>
+			  	<li>Join our library of variant users and end your worries at the click of a single post.!</li>
+			  	<li>No additional advertising or irritating subscription emails. We will only contact you back when your post has got a connection. So sleep worry less, your needs shall be</li>
+
+
+			  </ul>
+
 			</div>
-			
-			<a href="#" data-toggle="modal" style=""><div class="col-xs-1 darkBG" style="text-align:center; font-size:15px;">Home <span class="glyphicon glyphicon-home" style="font-size:15px;" aria-hidden="true"></span></div></a>
-			<a href="#" data-toggle="modal" style=""><div class="col-xs-1 darkBG" style="text-align:center; font-size:15px;">Post <span class="glyphicon glyphicon-plus" style="font-size:15px;" aria-hidden="true"></span></div></a>
-			<a href="#login" data-toggle="modal" style=" font-size:18px;"><div class="col-xs-1 col-xs-push- pull-right darkBG" style="text-align:center">Login</div></a>
+
+			<div class="panel-footer" style="height:1%; background:white;">
+				
+				<button id="whyLinkBack" type="button" class="close btn-rounded" style="font-size:3em; margin:0px; border:1px solid black; padding:10px;" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-arrow-left"></i></button>
+
+			</div>
 
 		</div>
+
+		
+
+
+	</div>
+
+</div>
+
+
+
+<!-- Why Us ends here -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Guide here -->
+
+
+<div class="container-fluid" id="guide" style="background:; overflow:hidden; height:100%; width:100%; z-index:1; position:absolute; right:-100%;">
 	
-</header>	
+
+	<div class="row col-xs-13" >
+		
+
+		<div class="panel panel-primary col-xs-12 col-xs-offset" style="position:fixed; height:100%; margin:;">
+		
+		<img src="./files/img/final.jpg" style="height:515px; width:1275px " alt="">		
+		
+
+		<!-- <div class="panel-heading " style="width:100%; font-size:3em; color:#fff; margin-top:10px;">Guide sets us apart . . . </div>
+
+		
+		  
+
+
+		  <div class="panel-body">
+
+			  <ul style=" margin:10px;">
+			  	
+			  	<li>Something</li>
+			  	<li>Something</li>
+			  	<li>Something</li>
+			  	<li>Something</li>
+			  	<li>Something</li>
+
+
+			  </ul>
+
+			</div>
+ -->
+			<div class="panel-footer" style="height:1%; background:white;">
+				
+				<button id="guideLinkBack" type="button" class="close btn-rounded pull-left" style="color:black; font-size:3em; margin:0px; border:1px solid black; padding:10px;" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-arrow-right" style="color:black;"></i></button>
+
+			</div>
+
+		</div>
+
+		
+
+
+	</div>
+
+</div>
+
+
+
+<!-- Guide ends here -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Header Module goes here -->
+
+
+
+
+<div class="container-fluid">
+	
+	
+	<div class="row">
+		
+		
+
+		<div class="col-xs-13 text-center jumbotron  " style="borde:solid 1px black; height:200px; background:#37474f;" >
+
+		
+			<a href="#" class="col-xs-2 pull-right" style="display:block; margin-top:20px; text-align:center; borde:solid 1px black; color:#EEE;" >
+
+				<span class=" glyphicon glyphicon-forward" style="font-size:3em;"></span><br>
+
+				<span class="glyphicon-class" style="font-size:1.5em;">Fast Forward</span>
+
+			</a>
+
+			
+			
+
+			<span  class="lead col-xs-4 col-xs-offset-4" style="font-size:5em; margin-top:30px; borde:solid 1px black; color:white;" >Connect <br>
+			
+
+				<button class=" btn btn-fab glyphicon glyphicon-link" style="padding:10px; margin-top:0px; margin-lef:200px; z-index:; background:#9e9e9e;" >
+
+				</button>
+
+			</span>
+
+		</div>
+
+
+
+	</div>
+
+
+
+</div>
+
+
+<!-- Header Module ends here -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Body Module goes here -->
+
+
+<div class="container">
+	
+
+	<!-- Login Module goes here -->
+
+
+
+	<!-- <div class="row">
+		
+		<div class="col-xs-4 col-xs-offset-4" style="height:200px; border:solid 1px black; margin-top:50px;" >
+			
+			<form class="form-login" action="" style="max-width:330px; margin:0 auto; margin-top:30px; padding:15px; background:white;">
+				
+				<input type="text" class="form-control empty" placeholder="Username">
+
+				<input type="password" class="form-control empty" placeholder="Password">	
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>			
+
+
+			</form>
+
+
+		</div>
+
+	</div>
  -->
 
-	
+<div class="row">
+
+	<div class="col-xs-4 col-xs-offset-4" style="borde:1px solid black; box-shadow:0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19); margin-top:50px;">	
+
+		<form action="" class="form-login" style="max-width:330px;  margin:0 auto; padding:30px;">
+
+		<legend>Welcome Back..!!</legend>
+		
+		<!-- <td>Username :</td> --><input type="text" class="form-control empty" id="username" name="name" placeholder="Email or Phone no" />
+		<!-- <td>Password :</td> --><input type="password" class="form-control empty" id="password" style="margin-top:10px;" name="password" placeholder="Password" />
+		<div style="position:absoulte; width:100%; borde:1px solid black; padding-top:px;"><input class="btn " onclick="logIn(this)" type="button" style="position:relative; display:block; background:#b0bec5; margin:0 auto; margin-top:10px; " value="Sign In" /></div>
+		<!-- <button class="btn btn-material-teal-600">600<div class="ripple-wrapper"></div></button> -->
+		
+		</form>
 
 
+	</div>	
 
-
-
-<!-- LOGIN MODULE HERE -->
-
-<div id="login" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Login</h4>
-            </div>
-            <div class="modal-body">
-
-            	<form onsubmit="return false" role="form">
-            		
-            		<div class="form-group">
-            			
-            			<label for="username">Username :</label>
-            			<input name="username" type="text-box" class="form-control" id="username">
-            		</div>
-            		<div class="form-group">
-            			
-            			<label for="Password">Password :</label>
-            			<input name="password" type="password" class="form-control" id="pwd">
-            		</div>
-<!--             		<div class="checkbox">
-            			<label><input type="checkbox">Remember me</label>
-            		</div>
-            		
-            	
-                <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
- -->            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" onclick="login()" class="btn btn-primary">Login</button>
-                </form>
-            </div>
-        </div>
-    </div>
 </div>
 
 
@@ -361,71 +625,96 @@ var urlStart = "http://127.0.0.1:8000/"
 
 
 
-<!-- POSTING MODAL HERE  -->
+ 	<!-- Login Module ends here -->
 
-<div id="postingModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Login</h4>
-            </div> -->
-            <div class="modal-body">
 
-            	<form onsubmit="return false" role="form">
-            		
-            		<div class="form-group">
-            			
-            			<label for="title">Title :</label>
-            			<input name="postTitle" placeholder="Title goes here " type="text-box" class="form-control" id="postTitle">
-            			<hr>
-            			<label for="content">Content :</label>
-            			<textarea name="postContent"  placeholder="Your post goes here " rows="10" cols="30" class="form-control" id="postContent"></textarea>
-            			<hr>
-            			<label for="tags">Tags :</label>
-            			<input name="postTags" type="text-box" placeholder="Finance, Education, Corporate, LifeStyle" class="form-control" id="postTags" >
-            <!-- 			<input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />  -->
-            		</div><!-- 
-            		<div class="form-group">
-            			
-            			<label for="Password">Password :</label>
-            			<input name="password" type="password" class="form-control" id="pwd">
-            		</div> -->
-<!--             		<div class="checkbox">
-            			<label><input type="checkbox">Remember me</label>
-            		</div>
-            		
-            	
-                <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
- -->            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" onclick="post()" class="btn btn-primary">Post</button>
-                </form>
-            </div>
-        </div>
-    </div>
+
+
+	<!-- Footer Module goes here -->
+
+
+	<div class="row">
+		
+		
+
+		<div class="col-xs-2 col-xs-offset-4" style="margin-top:10px;" ><a href="#myModal" data-toggle="modal" data-target="#register" style="text-decoration:underline;" >Not registered yet.?</a></div>
+
+		<div class="col-xs-2" id style="position:absolute; bottom:50px; left:10px; height:50px; borde:solid 1px black;">
+			
+			<a href="" id="whyLink" class="col-x-2 pull-righ" style="display:block; margin-to:20px; text-align:center; " >
+
+				<span class=" glyphicon glyphicon-question-sign" style="font-size:3em;"></span><br>
+
+				<span class="glyphicon-class" style="font-size:1.5em;">Why Us</span>
+
+			</a>
+
+		</div>
+
+		<div class="col-xs-2" style="position:absolute; bottom:50px; right:10px; height:50px; borde:solid 1px black;">
+			
+			<a href="" id="guideLink" class="col-x-2 pull-righ" style="display:block; margin-to:20px; text-align:center; " >
+
+				<span class=" glyphicon glyphicon-book" style="font-size:3em;"></span><br>
+
+				<span class="glyphicon-class" style="font-size:1.5em;">Guide</span>
+
+			</a>
+
+
+		</div>
+
+
+	<!-- Footer Module ends here -->
+
+
+	</div>
+
 </div>
 
 
+<!-- Body Module ends here -->
 
 
 
 
 
-<!-- REGISTER MODULE HERE -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Register Module starts here -->
+
+
 
 <div id="register" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Sign Up</h4>
+                <h4 class="modal-title">Let's Get You Started..!!</h4>
                 </div>
                 <div class="modal-body">
 		            <form role="form" onsubmit="return false" id="regSub" >
 		        		
-		        		<div class="form-group">
+		        		<div class="form-group" style="margin-top:10px;">
 		        			
 		        			<label for="Name">Name :</label>
 		        			<input type="text-box" class="form-control" name="name" id="regName">
@@ -441,53 +730,118 @@ var urlStart = "http://127.0.0.1:8000/"
 		        			
 		        			<label for="Location">Location :</label>
 		        			<input type="text-box" class="form-control" name="location" id="regLocation">
-		        		</div><br />
-		        		<div class="form-group">
+		        		</div>
+		        		<!-- <div class="form-group">
 		        			<b>Gender : </b>
-							  <input type="radio" style="margin-left:10px;" name="gender" value="M" id="regGender">&nbsp;Male&nbsp;
+							  <input type="radio" style="margin-left:5px;" name="gender" id="regGender">&nbsp;Male&nbsp;
 
 
 							  <input type="radio" name="gender" value="F">&nbsp;Female&nbsp;
 
-							  <input type="radio" name="gender" value="T">&nbsp;Trans-Gender&nbsp;
+							  <input type="radio" name="gender" value="M">&nbsp;Trans-Gender&nbsp;
+
+		        		</div> -->
+
+						<!-- <div class="form-group">
+		        			<b>Gender : </b>
+							  <input type="radio" style="margin-left:5px;" name="gender" id="regGender">&nbsp;Male&nbsp;
+
+
+							  <input type="radio" name="gender" value="F">&nbsp;Female&nbsp;
+
+							  <input type="radio" name="gender" value="M">&nbsp;Trans-Gender&nbsp;
 
 		        		</div>
-		        		<br />
-		        		<div class="form-group">
+		        		 -->
+
+						<div class="radio radio-primary" style="float:lef;">
+							
+							<b>Gender :</b>
+
+							<label >
+								
+								<input type="radio" id="regGender" name="sample1" value="M" >
+								<span class="circle"></span>
+								<span class="check"></span>
+								Male
+
+
+							</label>
+							
+							<label >
+								
+								<input type="radio" name="sample1" value="F" >
+								<span class="circle"></span>
+								<span class="check"></span>
+								Female
+
+
+							</label>
+
+							<label >
+								
+								<input type="radio" name="sample1" value="T" >
+								<span class="circle"></span>
+								<span class="check"></span>
+								Trans-Gender
+
+
+							</label>
+
+
+						</div>
+
+		        		<div class="form-group" style="margin-top:10px;" >
 		        			
 		        			<label for="Email">Email :</label>
-		        			<input type="text-box" class="form-control" name="email" id="regEmail">
+		        			<input type="email" class="form-control" name="email" id="regEmail">
 		        		</div>
 		        		<div class="form-group">
 		        			
 		        			<label for="Contact No">Contact No :</label>
-		        			<input type="text-box" class="form-control" name="contactNo" id="regContactNo">
+		        			<input type="text" class="form-control" maxlength="10" name="contactNo" id="regContactNo">
 		        		</div>
+
 		        		<div class="form-group">
 		        			
-		        			<label for="Password">Password :</label>
-		        			<input type="password" class="form-control" name="password" id="regPassword">
+		        			<label for="fb User Name">FB User Name :</label>
+		        			<input type="text" class="form-control" name="fbUserName" id="regfbUserName">
 		        		</div>
 
 		        		<div class="form-group has-feedback">
 		        			
-		        			<label for="Confirm Password">Confirm Password :</label>
-		        			<input onkeyup="check(this)" type="password" onkeypress="chckPassowrd(this.value);" class="form-control" id="regConfirmPassword">
-		        			<i id="checker" class=" glyphicon glyphicon-remove form-control-feedback"></i>
-		        		</div>
-		        		<div class="checkbox">
-		        		
-							<label><input type="checkbox" name="f" value="1" id="f1" checked>Do you wish to permit others to view your profile ?</label>
+		        			<label for="Password">Password :</label>
 
-		        			<label><input type="checkbox" name="f" value="2"  id="f2" checked>Do you wish to share your contact number with others ?</label>
+							<input type="password" class="form-control" onkeyup="chckPassword();" id="primaryPass" >
+
+							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+
+		        		</div>
+
+		        		<div class="form-group has-warning has-feedback cnfPassDiv">
+		        			
+		        			<label for="Confirm Password">Confirm Password :</label>
+
+		        			<input type="password" onkeyup="chckPassword();" class="form-control" id="regConfirmPass">
+
+		        			<span class="glyphicon glyphicon-warning-sign form-control-feedback cnfPassGlyph" aria-hidden="true"></span>
+
+		        		</div>
+
+
+		        		<div class="checkbox checkbox-primary">
 		        		
-		        			<label><input type="checkbox" name="f" value="3"  id="f3" checked>Do you wish to share your email with other users ?</label>
+							<label class="chkbox"><input type="checkbox" name="f" value="1" id="f1" checked ><span class="checkbox-material" ><span class="check"></span></span>&nbsp;&nbsp;Do you wish to permit others to view your profile ?</label>
+
+		        			<label class="chkbox"><input type="checkbox" name="f" value="2"  id="f2" checked><span class="checkbox-material"><span class="check"></span></span>&nbsp;&nbsp;Do you wish to share your contact number with others ?</label>
+		        		
+		        			<label class="chkbox"><input type="checkbox" name="f" value="3"  id="f3" checked><span class="checkbox-material"><span class="check"></span></span>&nbsp;&nbsp;Do you wish to share your email with other users ?</label>
 		        		
 		        		
 		        		</div>
 			        		<div class="modal-footer">
-				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				                <button id="regSubmit" type="submit" onclick="sub()" class="btn btn-primary" >Submit</button>
+				                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><i class="mdi-navigation-close"></i>Close <div class="ripple-wrapper"></div></button>
+				                <button id="regSubmit" type="submit" onclick="sub(this)" class="btn btn-primary btn-flat" ><i class="mdi-navigation-check"></i>Submit <div class="ripple-wrapper"></div> </button>
 				                </form>
 	            			</div>
 		        	</form>
@@ -499,41 +853,55 @@ var urlStart = "http://127.0.0.1:8000/"
 
 
 
-<!-- Unworked SLide Menu here -->
+<!-- 
+
+<div class="modal fade">
+	 
+	<div class="modal-dialog">
+		
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				
+				<button class="btn close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+				<h3 class="modal-title">Let's Get You Started..!!</h3>
+
+			</div>
+
+			<div class="modal-body">
+				
+
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+ -->
+
+<!-- Register Module ends here -->
+
+
+
+
+
+
+
+
+
 
 <!-- 
-<nav>
-<ul class="list-unstyled main-menu">
- 
+<a href="#" class="col-xs-1 col-xs-offset-11" style="position:absolute; display:block; text-align:center; border:solid 1px black;" >
+	
+	<span class="glyphicon glyphicon-forward"  ></span><br>
+	<span class="glyphicon-class">Fast Forward</span>
 
-    <li class="text-right"><a href="#" id="nav-close">X</a></li>
-    <li><a href="#">Menu One <span class="icon"></span></a></li>
-    <li><a href="#">Menu Two <span class="icon"></span></a></li>
-    <li><a href="#">Menu Three <span class="icon"></span></a></li>
-    <li><a href="#">Dropdown</a>
-      <ul class="list-unstyled">
-          <li class="sub-nav"><a href="#">Sub Menu One <span class="icon"></span></a></li>
-          <li class="sub-nav"><a href="#">Sub Menu Two <span class="icon"></span></a></li>
-          <li class="sub-nav"><a href="#">Sub Menu Three <span class="icon"></span></a></li>
-          <li class="sub-nav"><a href="#">Sub Menu Four <span class="icon"></span></a></li>
-          <li class="sub-nav"><a href="#">Sub Menu Five <span class="icon"></span></a></li>
-      </ul>
-    </li>
-    <li><a href="#">Menu Four <span class="icon"></span></a></li>
-    <li><a href="#">Menu Five <span class="icon"></span></a></li>
-  </ul>
-</nav>
- 
-<div class="navbar navbar-inverse navbar-fixed-top">      
- 
-
-    
-    <div class="navbar-header pull-right">
-      <a id="nav-expander" class="nav-expander fixed">
-        MENU &nbsp;<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-      </a>
-    </div>
-</div>
+</a>
  -->
 
 
@@ -544,82 +912,11 @@ var urlStart = "http://127.0.0.1:8000/"
 
 
 
-
-
-
-
-
-
-		<div class="container" style="position:relative; margin-top:100px;">
-
-		  
-		  <div id="columns" data-columns>
-		  	
-		  	<div></div>
-		  	<div></div>
-
-		  </div>
-		</div>		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-		</script>
-
-<script type="text/javascript" src="files/js/main.js"></script>
-
-<script src="salvattore.js"></script>
 <script type="text/javascript" src="files/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="files/js/material.js"></script>
+<script type="text/javascript" src="files/js/ripples.js"></script>
+
 </body>
+
+
 </html>

@@ -8,6 +8,9 @@ from django.core import serializers
 def connect(request):
 	userId = request.POST['userId']
 	postId = request.POST['postId']
+	#if userId == postId :
+	#	response = {'responseCode':'RESPONSE_CODE_GENERIC_ERROR', 'responseString':'You cannot connect with yourself'}	
+	#	return HttpResponse(json.dumps(response), content_type="application/json")		
 	responseCode, responseString = getConnected(userId,postId)
 	response = {'responseCode':responseCode, 'responseString':responseString}
 	return HttpResponse(json.dumps(response), content_type="application/json")

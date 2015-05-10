@@ -4,9 +4,9 @@ from django.db import IntegrityError, DatabaseError
 from django.core.exceptions import ValidationError
 import uuid
 
-def createUser(name,password,dob,location,gender,email,contactNo,flags):
+def createUser(name,password,dob,location,gender,email,contactNo,flags,fbUserName):
 	try:
-		user = users(userId = uuid.uuid4(), name = name, password = password, location = location, dob = dob, gender = gender, email = email, contactNo = contactNo, flags = flags)
+		user = users(userId = uuid.uuid4(), name = name, password = password, location = location, dob = dob, gender = gender, email = email, contactNo = contactNo, flags = flags,fbUserName = fbUserName)
 		loginUser = login(email=email, contactNo = contactNo, password = password)
 		user.save()
 		loginUser.save()		

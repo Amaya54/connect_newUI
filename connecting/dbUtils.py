@@ -9,6 +9,10 @@ def exchange(userId,postId):
 	flag = ''
 	try:
 		post = postDetails.objects.get(postId = postId)
+		posterId =post.userId
+		if userId == posterId:
+			RESPONSE_CODE = 'RESPONSE_CODE_SAME_USER'
+			return RESPONSE_CODE
 		flag1 = eval(post.filterBy)['flag']
 		post.connectCount = post.connectCount + 1
 		post.save()
@@ -69,11 +73,18 @@ def exchangeInfo(exchangeFlag):
 
 
 def getConnected(userId,postId):
+	data = ''
 	try:
+		user = connectDetails.objects.get(userId = userId, postId = postId)
+		return 'RESPONSE_CODE_ALREADY_CONNECTED','You are already connected with this post'
+	except connectDetails.DoesNotExist:
 		exchangeFlag = exchange(userId,postId)
+		if exchangeFlag == 'RESPONSE_CODE_SAME_USER':
+			return 'RESPONSE_CODE_SAME_USER','You cannot connect with yourself'
 		user = connectDetails(connectId = uuid.uuid4(), userId = userId, postId = postId, exchangeFlag = exchangeFlag)
 		user.save()
 		data = exchangeInfo(exchangeFlag)
+		RESPONSE_CODE = "RESPONSE_CODE_SUCCESS"
 	except ValidationError, e:
 		print "Exception "+str(e)
 		RESPONSE_CODE = "RESPONSE_CODE_VALIDATION_ERROR"
